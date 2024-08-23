@@ -24,6 +24,8 @@ import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GradientButton from '../../../components/GradientButton';
+import GradientText from '../../../components/GradientText';
+import SocialLogin from './SocialLogin';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -203,6 +205,16 @@ const LoginScreen = ({ navigation }) => {
                     {errors.password}
                   </Text>
                 ) : null}
+
+                <TouchableOpacity
+                  style={{ alignSelf: "flex-end",marginTop:"5%" }}
+                  onPress={() => navigation.navigate('ForgotPassword')}>
+                  <Text
+                    style={{ textDecorationLine:"underline", color: theme.colors.onBackground }}>
+                    {'Forgot password'}
+                  </Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity>
                   <GradientButton
                     textStyle={{ color: "#fff", letterSpacing: 3 }}
@@ -226,7 +238,7 @@ const LoginScreen = ({ navigation }) => {
                   {'Log in'}
                 </Button> */}
 
-                <View style={{ marginVertical: '5%', alignItems: 'center' }}>
+                {/* <View style={{ marginVertical: '5%', alignItems: 'center' }}>
                   <Button
                     mode="text"
                     onPress={() => navigation.navigate("WelcomeScreen")}
@@ -234,17 +246,12 @@ const LoginScreen = ({ navigation }) => {
                   >
                     New to Lanza job? Sign up
                   </Button>
-                </View>
+                </View> */}
 
-                <TouchableOpacity
-                  style={{ alignSelf: 'center' }}
-                  onPress={() => navigation.navigate('ForgotPassword')}>
-                  <Text
-                    style={{ fontWeight: 'bold', color: theme.colors.error }}>
-                    {'Forgot password'}
-                  </Text>
-                </TouchableOpacity>
+
               </View>
+              <SocialLogin />
+
             </View>
           )}
         </Formik>

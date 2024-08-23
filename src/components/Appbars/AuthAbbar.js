@@ -38,8 +38,8 @@ export default function AuthAbbar({ title }) {
         <View style={{ width: '33%' }}>
           <Image
             style={{
-              width: 100,
-              height: 80,
+              width: 150,
+              height: 150,
               resizeMode: "contain"
             }}
             source={require('../../assets/logob.png')}
