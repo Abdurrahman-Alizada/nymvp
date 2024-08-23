@@ -46,7 +46,6 @@ const SignupWithEmail = () => {
   const [resendEmailForUserRegistration, { isLoading: resendLoading }] = useResendEmailForUserRegistrationMutation();
 
   const submitHandler = async (values, formikBag) => {
-
     emailRef.current = values.email;
     try {
       const res = await registerUser({
@@ -173,7 +172,7 @@ const SignupWithEmail = () => {
               <Text style={{ fontSize: 18, marginVertical: '5%', textAlign: "center", fontWeight: '700' }}>
                 Register Information
               </Text>
-              <Text style={{ fontSize: 18, marginVertical: '2%', textAlign: "center", color: "##767676" }}>
+              <Text style={{ fontSize: 18, marginVertical: '2%', textAlign: "center",  }}>
                 Tell Us About You
               </Text>
               <Text style={{ fontWeight: '800', marginBottom: '2%' }}>Email</Text>
@@ -188,37 +187,6 @@ const SignupWithEmail = () => {
               />
               {errors.email && touched.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
 
-              <Text style={{ fontWeight: '800', marginVertical: '2%' }}>Where do you live?</Text>
-              <TextInput
-                placeholder="Address line 1"
-                onChangeText={handleChange('addressLine1')}
-                onBlur={handleBlur('addressLine1')}
-                value={values.addressLine1}
-                mode="outlined"
-                style={{ height: 50 }}
-                outlineColor={theme.colors.secondary}
-              />
-              {errors.addressLine1 && touched.addressLine1 && <Text style={{ color: 'red' }}>{errors.addressLine1}</Text>}
-
-              <TextInput
-                placeholder="Address line 2"
-                onChangeText={handleChange('addressLine2')}
-                onBlur={handleBlur('addressLine2')}
-                value={values.addressLine2}
-                mode="outlined"
-                style={{ height: 50, marginTop: '2%' }}
-                outlineColor={theme.colors.secondary}
-              />
-
-              <TextInput
-                placeholder="Address line 3"
-                onChangeText={handleChange('addressLine3')}
-                onBlur={handleBlur('addressLine3')}
-                value={values.addressLine3}
-                mode="outlined"
-                style={{ height: 50, marginTop: '2%' }}
-                outlineColor={theme.colors.secondary}
-              />
 
               <Text style={{ fontWeight: '800', marginVertical: '2%' }}>Post code</Text>
               <TextInput
@@ -283,7 +251,6 @@ const SignupWithEmail = () => {
             </View>
           )}
         </Formik>
-
 
       </ScrollView>
     </View>
