@@ -12,9 +12,11 @@ import {
   CreatePhoneNumber,
   Address,
   SearchAddress,
-  SignUpwithEmail
-
+  SignUpwithEmail,
 } from '../screens/auth/Index';
+import SignupWithEmail2 from '../screens/auth/Registration/SignupWithEmail2';
+import SignupWithEmail3 from '../screens/auth/Registration/SignupWithEmail3';
+
 import ForgotPassword from '../screens/auth/ForgotPassword/ForgotPasswordScreen';
 import GeneralAppbar from '../components/Appbars/GeneralAppbar';
 const Stack = createStackNavigator();
@@ -41,6 +43,24 @@ const AuthStack = () => {
         }}
         component={SignUpwithEmail}
       />
+      <Stack.Screen
+        name="SignUpwithEmail2"
+        options={{
+          presentation: 'modal',
+          headerShown: false,
+          title: 'Sign up with email',
+        }}
+        component={SignupWithEmail2}
+      />
+      <Stack.Screen
+      name="SignUpwithEmail3"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+        title: 'Sign up with email',
+      }}
+      component={SignupWithEmail3}
+    />
 
       <Stack.Screen
         name="FreeflexerCreatePassword"
@@ -112,6 +132,7 @@ const AuthStack = () => {
           title: 'Reset password',
         }}
       />
+     
     </Stack.Navigator>
   );
 };

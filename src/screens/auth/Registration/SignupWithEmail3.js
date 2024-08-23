@@ -1,6 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {StyleSheet, StatusBar, View, ScrollView} from 'react-native';
-
+import {StyleSheet, StatusBar, View, ScrollView, TouchableOpacity} from 'react-native';
 import {
   TextInput,
   Dialog,
@@ -8,23 +7,18 @@ import {
   Paragraph,
   Portal,
   Button,
+  RadioButton,
   useTheme,
 } from 'react-native-paper';
+import {
+    useRegisterUserMutation,
+    useResendEmailForUserRegistrationMutation,
+} from '../../../redux/reducers/user/userThunk';
 import {Formik} from 'formik';
-import {TouchableOpacity} from 'react-native';
 import * as Yup from 'yup';
 import {useNavigation} from '@react-navigation/native';
-import GradientText from '../../../components/GradientText';
+import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
-import {
-  useRegisterUserMutation,
-  useResendEmailForUserRegistrationMutation,
-} from '../../../redux/reducers/user/userThunk';
-import AuthAppbar from '../../../components/Appbars/AuthAbbar'; // Adjust import path as needed
-import {TextInput as PaperTextInput} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {height, width} from '../../../GlobalStyles';
-import SocialLogin from '../Login/SocialLogin';
 import GradientIconButton from '../../../components/GradientIconButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
 
@@ -44,13 +38,14 @@ const validationSchema = Yup.object().shape({
   surName: Yup.string().label('Sur name'),
 });
 
-const SignupWithEmail = () => {
+const SignUpwithEmail3 = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
   const [showLoginButton, setShowLoginButton] = useState(false);
   const [showTryAgainButton, setShowTryAgainButton] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [gender, setGender] = useState('male');
 
   const emailRef = useRef('');
 
@@ -70,6 +65,7 @@ const SignupWithEmail = () => {
         city: values.city,
         firstName: values.firstName,
         surName: values.surName,
+        gender: gender, // Include gender in the request
       });
       if (res.error?.status === 409) {
         setMessage(res.error?.data?.message || 'Conflict');
@@ -139,6 +135,26 @@ const SignupWithEmail = () => {
         showsVerticalScrollIndicator={false}>
         <StatusBar barStyle="dark-content" />
 
+        <Text
+          style={{
+            fontSize: 18,
+            marginVertical: '5%',
+            textAlign: 'center',
+            fontWeight: '700',
+          }}>
+          CREATE PROFILE
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            marginVertical: '2%',
+            textAlign: 'center',
+            color: '#767676',
+            marginTop: -2,
+          }}>
+          Register Information
+        </Text>
+
         <Formik
           innerRef={formikRef}
           initialValues={{
@@ -199,29 +215,10 @@ const SignupWithEmail = () => {
                   </Dialog.Actions>
                 </Dialog>
               </Portal>
+              <Text style={{ fontWeight: '800', marginBottom: '2%',top:30 }}>Age:</Text>
 
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginVertical: '5%',
-                  textAlign: 'center',
-                  fontWeight: '700',
-                }}>
-                CREATE PROFILE
-              </Text>
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginVertical: '2%',
-                  textAlign: 'center',
-                  color: '#767676',
-                  marginTop: -2,
-                }}>
-                Register Information
-              </Text>
-              {/* <Text style={{ fontWeight: '800', marginBottom: '2%' }}>Email Address</Text> */}
               <TextInput
-                placeholder="Email address"
+                placeholder=" Your age"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
@@ -233,9 +230,25 @@ const SignupWithEmail = () => {
               {errors.email && touched.email && (
                 <Text style={{color: 'red'}}>{errors.email}</Text>
               )}
+              <Text style={{ fontWeight: '800', marginBottom: '2%',top:22 }}>Height:</Text>
 
               <TextInput
-                placeholder="Full name"
+                placeholder="Your height"
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={values.email}
+                mode="outlined"
+                theme={{roundness: 20}}
+                style={{height: 60, marginTop: '3%', marginTop: 20}}
+                outlineColor={theme.colors.secondary}
+              />
+              {errors.email && touched.email && (
+                <Text style={{color: 'red'}}>{errors.email}</Text>
+              )}
+              <Text style={{ fontWeight: '800', marginBottom: '2%',top:22 }}>Weight:</Text>
+
+              <TextInput
+                placeholder="Your weight"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
@@ -248,167 +261,69 @@ const SignupWithEmail = () => {
                 <Text style={{color: 'red'}}>{errors.email}</Text>
               )}
 
-              <PaperTextInput
-                placeholder="Password"
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                mode="outlined"
-                secureTextEntry={!passwordVisible}
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: 20}}
-                outlineColor={theme.colors.secondary}
-                right={
-                  <PaperTextInput.Icon
-                    icon={passwordVisible ? 'eye-off' : 'eye'}
-                    onPress={() => setPasswordVisible(!passwordVisible)}
-                  />
-                }
-              />
-              {errors.password && touched.password && (
-                <Text style={{color: 'red'}}>{errors.password}</Text>
-              )}
-
-              <PaperTextInput
-                placeholder="Password"
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                mode="outlined"
-                secureTextEntry={!passwordVisible}
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: 20}}
-                outlineColor={theme.colors.secondary}
-                right={
-                  <PaperTextInput.Icon
-                    icon={passwordVisible ? 'eye-off' : 'eye'}
-                    onPress={() => setPasswordVisible(!passwordVisible)}
-                  />
-                }
-              />
-              {errors.password && touched.password && (
-                <Text style={{color: 'red'}}>{errors.password}</Text>
-              )}
-
-              <TextInput
-                placeholder="username"
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                mode="outlined"
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: '3%', marginTop: 20}}
-                outlineColor={theme.colors.secondary}
-              />
-              {errors.email && touched.email && (
-                <Text style={{color: 'red'}}>{errors.email}</Text>
-              )}
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginTop: '2%',
-                }}></View>
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  marginVertical:"5%"
-                }}>
-                <GradientIconButton
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginHorizontal: 40,
-                    left:20,
-                    borderWidth: 1,
-                    borderColor: '#555',
-                    width: 50,
-                    height: 50,
-                    borderRadius: 10,
-                    backgroundColor: 'transparent',
-                  }}>
-                  <TouchableOpacity style={{}}>
-                    <MaterialCommunityIcons
-                      name="facebook"
-                      size={24}
-                      color="#ffffff"
+              {/* Gender Selection */}
+              <View style={{ marginTop: 20 }}>
+                <Text style={{ fontSize: 16, color: '#767676' }}>Gender</Text>
+                <RadioButton.Group
+                  onValueChange={newValue => setGender(newValue)}
+                  value={gender}>
+                  <View style={styles.radioButtonContainer}>
+                    <RadioButton.Item
+                      label="Male"
+                      value="male"
+                      color={theme.colors.primary}
+                      uncheckedColor={theme.colors.surface}
+                      labelStyle={{ color: theme.colors.text }}
                     />
-                  </TouchableOpacity>
-                </GradientIconButton>
-
-
-
-                <GradientIconButton
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: '#555',
-                    width: 50,
-                    height: 50,
-                    left:2,
-
-                    borderRadius: 10,
-                    backgroundColor: 'transparent',
-                  }}>
-                  <TouchableOpacity style={{}}>
-                    <MaterialCommunityIcons
-                      name="google"
-                      size={24}
-                      color="#ffffff"
+                    <RadioButton.Item
+                      label="Female"
+                      value="female"
+                      color={theme.colors.primary}
+                      uncheckedColor={theme.colors.surface}
+                      labelStyle={{ color: theme.colors.text }}
                     />
-                  </TouchableOpacity>
-                </GradientIconButton>
-                <GradientIconButton
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: '#555',
-                    left:10,
-
-                    width: 50,
-                    height: 50,
-                    borderRadius: 10,
-                    backgroundColor: 'transparent',
-                  }}>
-                  <TouchableOpacity style={{}}>
-                    <MaterialCommunityIcons
-                      name="apple"
-                      size={24}
-                      color="#ffffff"
+                    <RadioButton.Item
+                      label="Other"
+                      value="other"
+                      color={theme.colors.primary}
+                      uncheckedColor={theme.colors.surface}
+                      labelStyle={{ color: theme.colors.text }}
                     />
-                  </TouchableOpacity>
-                </GradientIconButton>
+                  </View>
+                </RadioButton.Group>
               </View>
               <TouchableOpacity
-              onPress={() => navigation.navigate('SignUpwithEmail2')}>
+  onPress={() => navigation.navigate('SignUpwithEmail3')}
+  style={{ alignItems: 'center', marginTop: 80 }}
+>
+  <GradientButton
+    textStyle={{ color: '#fff', fontSize: 20,textAlign:"center" }}
+    style={{
+      borderRadius: 20,
+      width: '65%',
+      height: 55,
+      justifyContent: 'center', // Centers the text vertically
+    }}
+    text={'Nexttt'}
+  />
+</TouchableOpacity>
 
-                <GradientButton
-                  textStyle={{color: '#fff',  fontSize: 20,top:10}}
-                  style={{
-                    //padding: '5%',
-                    alignItems: 'center',
-                    // marginTop: 90,
-                    borderRadius: 20,
-                    top:10,
-                    width: '60%',
-                    height: '25%',
-                    left: 65,
-                  }}
-                  text={'Next'}
-                />
-              </TouchableOpacity>
+              
             </View>
           )}
         </Formik>
+
+       
       </ScrollView>
     </View>
   );
 };
+export default SignUpwithEmail3
 
-export default SignupWithEmail;
+
+const styles = StyleSheet.create({
+  radioButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});
