@@ -11,7 +11,8 @@ import {
   FreeflexerCreatePassword,
   CreatePhoneNumber,
   Address,
-  SearchAddress
+  SearchAddress,
+  SignUpwithEmail
 
 } from '../screens/auth/Index';
 import ForgotPassword from '../screens/auth/ForgotPassword/ForgotPasswordScreen';
@@ -38,7 +39,7 @@ const AuthStack = () => {
           headerShown: false,
           title: 'Sign up with email',
         }}
-        component={FreeflexerSignUpwithEmail}
+        component={SignUpwithEmail}
       />
 
       <Stack.Screen

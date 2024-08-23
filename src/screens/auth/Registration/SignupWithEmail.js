@@ -15,8 +15,8 @@ import { useNavigation } from '@react-navigation/native';
 import {
   useRegisterUserMutation,
   useResendEmailForUserRegistrationMutation,
-} from '../../../../redux/reducers/user/userThunk';
-import AuthAppbar from "../../../../components/Appbars/AuthAbbar"; // Adjust import path as needed
+} from '../../../redux/reducers/user/userThunk';
+import AuthAppbar from "../../../components/Appbars/AuthAbbar"; // Adjust import path as needed
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
   surName: Yup.string().label('Sur name'),
 });
 
-const FreeflexerSignupWithEmail = () => {
+const SignupWithEmail = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
@@ -46,7 +46,7 @@ const FreeflexerSignupWithEmail = () => {
   const [resendEmailForUserRegistration, { isLoading: resendLoading }] = useResendEmailForUserRegistrationMutation();
 
   const submitHandler = async (values, formikBag) => {
-    
+
     emailRef.current = values.email;
     try {
       const res = await registerUser({
@@ -108,10 +108,10 @@ const FreeflexerSignupWithEmail = () => {
   };
 
   const formikRef = useRef();
-  const theme =useTheme()
+  const theme = useTheme()
 
   return (
-    <View style={{ flex: 1,backgroundColor:theme.colors.background}}>
+    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <AuthAppbar title="Sign up today. Work tomorrow" />
 
       <ScrollView
@@ -170,10 +170,12 @@ const FreeflexerSignupWithEmail = () => {
                 </Dialog>
               </Portal>
 
-              <Text style={{ fontSize: 22, marginVertical: '5%', fontWeight: '700' }}>
-                Sign up today. Work tomorrow
+              <Text style={{ fontSize: 18, marginVertical: '5%', textAlign: "center", fontWeight: '700' }}>
+                Register Information
               </Text>
-
+              <Text style={{ fontSize: 18, marginVertical: '2%', textAlign: "center", color: "##767676" }}>
+                Tell Us About You
+              </Text>
               <Text style={{ fontWeight: '800', marginBottom: '2%' }}>Email</Text>
               <TextInput
                 placeholder="Enter your email"
@@ -282,18 +284,10 @@ const FreeflexerSignupWithEmail = () => {
           )}
         </Formik>
 
-        <View style={{ marginVertical: '5%', alignItems: 'center' }}>
-          <Button
-            mode="text"
-            onPress={() => navigation.navigate("Main", { screen: "HomeStack" })}
-            labelStyle={{ color: '#3F51B5', fontWeight: 'bold' }}
-          >
-            Maybe later
-          </Button>
-        </View>
+
       </ScrollView>
     </View>
   );
 };
 
-export default FreeflexerSignupWithEmail;
+export default SignupWithEmail;

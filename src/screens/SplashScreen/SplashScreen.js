@@ -39,7 +39,7 @@ const SplashScreen = ({ navigation }) => {
         const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
         let screenTo = "Onboarding";
 
-        if (!isAppFirstLaunched.current) {
+        if (isAppFirstLaunched.current) {
           screenTo = { name: "Onboarding" };
         } else if (!isLoggedIn) {
           screenTo = { name: "WelcomeScreen" };

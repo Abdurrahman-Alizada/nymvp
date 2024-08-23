@@ -4,6 +4,7 @@ import OTPScreen from './OTPScreen';
 import ResetPasswordScreen from './ResetPasswordScreen';
 import ContractorSignupWithEmail from './Registration/Contractor/ContractorSignupWithEmail';
 import FreeflexerSignUpwithEmail from './Registration/Freeflexer/FreeflexerSignupWithEmail';
+import SignUpwithEmail from './Registration/SignupWithEmail';
 import CheckEmail from './ForgotPassword/CheckEmail';
 import FreeflexerCreatePassword from './Registration/Freeflexer/CreatePassword';
 import CreatePhoneNumber from './Registration/Freeflexer/CreatePhoneNumber';
@@ -16,6 +17,7 @@ export {
   OTPScreen,
   ContractorSignupWithEmail,
   FreeflexerSignUpwithEmail,
+  SignUpwithEmail,
   ResetPasswordScreen,
   CheckEmail,
   FreeflexerCreatePassword,

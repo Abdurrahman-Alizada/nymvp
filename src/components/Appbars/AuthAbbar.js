@@ -10,9 +10,9 @@ export default function AuthAbbar({ title }) {
   const theme = useTheme();
 
   const { toggleTheme, isThemeDark } = useContext(ThemeContext);
- 
+
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{backgroundColor:theme.colors.background}}>
       <StatusBar
         barStyle={isThemeDark ? 'light-content' : 'dark-content'}
         backgroundColor={theme.colors.background}
@@ -46,7 +46,7 @@ export default function AuthAbbar({ title }) {
           />
         </View>
 
-        <View style={{width:"31%", flexDirection: 'row', alignItems:"center", justifyContent:"flex-end" }}>
+        <View style={{ width: "31%", flexDirection: 'row', alignItems: "center", justifyContent: "flex-end" }}>
           {isThemeDark ? (
             <IconButton
               icon="white-balance-sunny"
@@ -57,35 +57,21 @@ export default function AuthAbbar({ title }) {
             <IconButton icon="weather-night" onPress={() => toggleTheme()} />
           )}
           <TouchableOpacity
-           onPress={() => {
-            navigation.navigate('Main', {
-              screen: 'SettingsStack',
-              params: {
-                screen: 'ChooseLanguage',
-              },
-            });
-          }}
+            onPress={() => {
+              navigation.navigate('Main', {
+                screen: 'SettingsStack',
+                params: {
+                  screen: 'ChooseLanguage',
+                },
+              });
+            }}
             style={{ marginHorizontal: '2%' }}
           >
-            {/* <CountryFlag isoCode={currentLanguage === "en" ? 'gb' : currentLanguage} size={18} /> */}
           </TouchableOpacity>
 
         </View>
       </View>
 
-      {/* {title == 'Sign in' || title == 'Reset password' ? (
-        <Text></Text>
-      ) : (
-        <Text
-          style={{
-            fontSize: 22,
-            marginTop: '5%',
-            textAlign: 'center',
-          }}>
-          {t(title)}
-        </Text>
-      )
-      } */}
     </Appbar.Header>
   );
 }
