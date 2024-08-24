@@ -12,9 +12,14 @@ import {
   CreatePhoneNumber,
   Address,
   SearchAddress,
-  SignUpwithEmail
-
+  SignUpwithEmail,
 } from '../screens/auth/Index';
+import SignupWithEmail2 from '../screens/auth/Registration/SignupWithEmail2';
+import SignupWithEmail3 from '../screens/auth/Registration/SignupWithEmail3';
+import SignupWithEmail4 from '../screens/auth/Registration/SignupWithEmail4';
+import SignupWithEmail5 from '../screens/auth/Registration/SignupWithEmail5';
+import SignupWithEmail6 from '../screens/auth/Registration/SignupWithEmail6';
+
 import ForgotPassword from '../screens/auth/ForgotPassword/ForgotPasswordScreen';
 import GeneralAppbar from '../components/Appbars/GeneralAppbar';
 const Stack = createStackNavigator();
@@ -41,7 +46,51 @@ const AuthStack = () => {
         }}
         component={SignUpwithEmail}
       />
-
+      <Stack.Screen
+        name="SignUpwithEmail2"
+        options={{
+          presentation: 'modal',
+          headerShown: false,
+          title: 'Sign up with email',
+        }}
+        component={SignupWithEmail2}
+      />
+      <Stack.Screen
+      name="SignUpwithEmail3"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+        title: 'Sign up with email',
+      }}
+      component={SignupWithEmail3}
+    />
+    <Stack.Screen
+      name="SignupWithEmail4"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+        title: 'Sign up with email',
+      }}
+      component={SignupWithEmail4}
+    />
+ <Stack.Screen
+      name="SignupWithEmail5"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+        title: 'Sign up with email',
+      }}
+      component={SignupWithEmail5}
+    />
+    <Stack.Screen
+      name="SignupWithEmail6"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+        title: 'Sign up with email',
+      }}
+      component={SignupWithEmail6}
+    />
       <Stack.Screen
         name="FreeflexerCreatePassword"
         options={{
@@ -112,6 +161,7 @@ const AuthStack = () => {
           title: 'Reset password',
         }}
       />
+     
     </Stack.Navigator>
   );
 };
