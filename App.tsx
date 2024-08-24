@@ -29,6 +29,8 @@ import {fontConfig} from './src/GlobalStyles';
 import {ThemeContext} from './src/themeContext';
 import WelcomeScreenIndex from './src/screens/WelcomeScreen/WelcomeScreenIndex';
 import { LogBox } from 'react-native';
+import BottomTabsStack from './src/navigation/BottomStack';
+import HomeStack from './src/navigation/HomeStack';
 
 export const App = () => {
   const [isThemeDark, setIsThemeDark] = React.useState(false);
@@ -75,6 +77,7 @@ export const App = () => {
     <ThemeContext.Provider value={preferences}>
       <Provider store={store}>
         <PaperProvider theme={theme}>
+        {/* <PaperProvider theme={CombinedDarkTheme}> */}
           <NavigationContainer>
             <Stack.Navigator initialRouteName="SplashScreen">
               <Stack.Screen
@@ -97,11 +100,16 @@ export const App = () => {
                 component={Onboarding}
                 options={{headerShown: false}}
               />
-              {/* <Stack.Screen
-                name="Main"
-                component={MainStack}
+               <Stack.Screen
+                name="HomeStack"
+                component={HomeStack}
                 options={{headerShown: false}}
-              /> */}
+              />
+              <Stack.Screen
+                name="BottomTabs"
+                component={BottomTabsStack}
+                options={{headerShown: false}}
+              />
             </Stack.Navigator>
           </NavigationContainer>
         </PaperProvider>

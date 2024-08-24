@@ -1,41 +1,24 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import Recipe from '../screens/Home/Recipe';
+import { LoginScreen } from '../screens/auth/Index';
 const Stack = createStackNavigator();
-import GeneralAppbar from '../components/Appbars/GeneralAppbar';
-import ContractorHomeScreen from '../screens/home/Contractor/index';
-import FreeflexerTermsAndCondition from '../screens/TermsAndConditions/FreeflexerTermsAndConditions';
 
-const AppStack = () => {
+const HomeStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='Recipi' >
+     
+      <Stack.Screen
+        name="Recipi"
+        component={Recipe}
+        options={{
+          headerShown: false,
+        }}
+      />
 
-      <Stack.Screen
-        name="ContractorHomeScreen"
-        component={FreeflexerTermsAndCondition}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="CreateShift"
-        component={FreeflexerTermsAndCondition}
-        options={{
-          header: props => (
-            <ContractorDashboardGeneralAppbar greetingText={'Create shift'} {...props} />
-          )
-        }}
-      />
-      <Stack.Screen
-        name="CreateBusiness"
-        component={FreeflexerTermsAndCondition}
-        options={{
-          header: props => (
-            <GeneralAppbar title={'Add business'} {...props} />
-          )
-        }}
-      />
 
     </Stack.Navigator>
   );
 };
 
-export default AppStack;
+export default HomeStack;

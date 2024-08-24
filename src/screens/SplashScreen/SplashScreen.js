@@ -56,7 +56,7 @@ const SplashScreen = ({ navigation }) => {
 
     setTimeout(() => {
       checkLoginStatus();
-    }, 5000);
+    }, 2000);
   
   }, []);
 

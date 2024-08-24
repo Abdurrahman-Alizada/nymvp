@@ -237,7 +237,7 @@ const SignupWithEmail4 = () => {
               position="leading"
               status="checked" />
               <TouchableOpacity
-                onPress={() => navigation.navigate('SignupWithEmail6')}
+                onPress={() => navigation.navigate('BottomTabs')}
                 style={{alignItems: 'center', marginTop: 80}}>
                 <GradientButton
                   textStyle={{color: '#fff', fontSize: 20, textAlign: 'center'}}
