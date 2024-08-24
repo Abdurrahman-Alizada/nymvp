@@ -37,7 +37,8 @@ const Onboarding = () => {
         <TouchableOpacity onPress={()=>navigation.navigate({name:"Auth", params:{screen:"Login"}})} style={{ width: "60%", padding: 12, alignItems: "center", marginTop: 10, backgroundColor: theme.colors.primary, borderRadius: 10 }}>
           <Text style={{ color: "#fff" }}>LOGIN NOW</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate({name:"Auth", params:{screen:"SignUpwithEmail"}})} style={{width: "60%",}}>
+        {/* <TouchableOpacity onPress={()=>navigation.navigate({name:"Auth", params:{screen:"SignUpwithEmail"}})} style={{width: "60%",}}> */}
+        <TouchableOpacity onPress={()=>navigation.navigate("BottomTabs")} style={{width: "60%",}}>
 
         <GradientButton
           textStyle={{color:"#fff", letterSpacing:3}}
