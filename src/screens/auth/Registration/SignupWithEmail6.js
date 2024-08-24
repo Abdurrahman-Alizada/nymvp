@@ -1,7 +1,11 @@
-
-
-import React, { useRef, useState } from 'react';
-import { StyleSheet, StatusBar, View, ScrollView, TouchableOpacity } from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+  StyleSheet,
+  StatusBar,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {
   TextInput,
   Dialog,
@@ -9,17 +13,19 @@ import {
   Paragraph,
   Portal,
   Button,
-  RadioButton,
   useTheme,
-  TouchableRipple,
 } from 'react-native-paper';
-import { useRegisterUserMutation, useResendEmailForUserRegistrationMutation } from '../../../redux/reducers/user/userThunk';
-import { Formik } from 'formik';
+import {
+  useRegisterUserMutation,
+  useResendEmailForUserRegistrationMutation,
+} from '../../../redux/reducers/user/userThunk';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
+import { Checkbox } from 'react-native-paper';
+
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -37,23 +43,18 @@ const validationSchema = Yup.object().shape({
   surName: Yup.string().label('Sur name'),
 });
 
-const SignupWithEmail3 = () => {
+const SignupWithEmail4 = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
   const [showLoginButton, setShowLoginButton] = useState(false);
   const [showTryAgainButton, setShowTryAgainButton] = useState(false);
   const [gender, setGender] = useState('male');
-  const [workoutFrequency, setWorkoutFrequency] = useState('first');
-  // const handleSubmit = () => {
-  //   console.log('Next button pressed'); // Log to see if this is reached
-  //   navigation.navigate('SignupWithEmail4');
-  // };
-  // };
+
   const emailRef = useRef('');
 
-  const [registerUser, { isLoading }] = useRegisterUserMutation();
-  const [resendEmailForUserRegistration, { isLoading: resendLoading }] =
+  const [registerUser, {isLoading}] = useRegisterUserMutation();
+  const [resendEmailForUserRegistration, {isLoading: resendLoading}] =
     useResendEmailForUserRegistrationMutation();
 
   const submitHandler = async (values, formikBag) => {
@@ -69,7 +70,6 @@ const SignupWithEmail3 = () => {
         firstName: values.firstName,
         surName: values.surName,
         gender: gender, // Include gender in the request
-        workoutFrequency: workoutFrequency, // Include workout frequency in the request
       });
       if (res.error?.status === 409) {
         setMessage(res.error?.data?.message || 'Conflict');
@@ -131,7 +131,7 @@ const SignupWithEmail3 = () => {
   const theme = useTheme();
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
       <AuthAppbar title="Sign up today. Work tomorrow" />
 
       <ScrollView
@@ -140,7 +140,7 @@ const SignupWithEmail3 = () => {
         <StatusBar barStyle="dark-content" />
 
         <Text style={styles.headerText}>CREATE PROFILE</Text>
-        <Text style={styles.subHeaderText}>How often do you work out?</Text>
+        <Text style={styles.subHeaderText}>I Would Like To Avoid:.</Text>
 
         <Formik
           innerRef={formikRef}
@@ -155,8 +155,8 @@ const SignupWithEmail3 = () => {
             surName: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values, { resetForm }) => {
-            submitHandler(values, { resetForm });
+          onSubmit={(values, {resetForm}) => {
+            submitHandler(values, {resetForm});
           }}>
           {({
             handleChange,
@@ -187,7 +187,7 @@ const SignupWithEmail3 = () => {
                       <Button
                         onPress={() => {
                           setVisible(false);
-                          navigation.navigate('SignupWithEmail4');
+                          navigation.navigate('Login');
                         }}>
                         Go to login
                       </Button>
@@ -202,50 +202,55 @@ const SignupWithEmail3 = () => {
                   </Dialog.Actions>
                 </Dialog>
               </Portal>
+              <Text style={{top: 25}}>Ingredients:</Text>
+              <TextInput
+                placeholder="Fish, Beans, ........."
+                onChangeText={handleChange('firstOption')}
+                value={values.firstOption}
+                mode="outlined"
+                theme={{roundness: 20}}
+                style={{height: 60, marginTop: '9%'}}
+                outlineColor={theme.colors.secondary}
+              />
+             
+              <Text style={{top: 25}}>Meals/courses:</Text>
 
-              {/* Registration Information Form Fields */}
-              {/* (Existing form fields for email, address, etc.) */}
-
-              {/* Workout Frequency Selection */}
-              {/* <Text style={styles.subHeaderText}>Workout Frequency</Text> */}
-              {workoutOptions.map((option, index) => (
-                <TouchableRipple
-                  key={index}
-                  onPress={() => setWorkoutFrequency(option.value)}
-                  rippleColor="rgba(255, 255, 255, .32)"
-                  style={[
-                    styles.optionContainer,
-                    workoutFrequency === option.value && styles.selectedOption,
-                  ]}
-                >
-                  <>
-                    <Text style={styles.optionText}>{option.label}</Text>
-                    <RadioButton
-                      value={option.value}
-                      status={workoutFrequency === option.value ? 'checked' : 'unchecked'}
-                      onPress={() => setWorkoutFrequency(option.value)}
-                      color="lightgrey"
-                      uncheckedColor="lightgrey"
-                    />
-                  </>
-                </TouchableRipple>
-              ))}
-
-<TouchableOpacity
-  onPress={() => navigation.navigate('SignupWithEmail4')}
-  style={{ alignItems: 'center', marginTop: 80 }}
->
-  <GradientButton
-    textStyle={{ color: '#fff', fontSize: 20,textAlign:"center" }}
-    style={{
-      borderRadius: 20,
-      width: '65%',
-      height: 55,
-      justifyContent: 'center', // Centers the text vertically
-    }}
-    text={'Next'}
-  />
-</TouchableOpacity>
+             
+              <TextInput
+                placeholder="Fish & chips, pizza, ........."
+                onChangeText={handleChange('firstOption')}
+                value={values.firstOption}
+                mode="outlined"
+                theme={{roundness: 20}}
+                style={{height: 60, marginTop: '9%'}}
+                outlineColor={theme.colors.secondary}
+              />
+              <Text style={{top: 10,color:"grey"}}>
+                OBS: When writing foods to avoid (due to allergies or such),
+                make sure to put a comma after every one. Like the example
+                above.{' '}
+              </Text>
+              <Checkbox.Item label="I don’t have anything to avoid"
+             color={"#839898"}
+             labelStyle={styles.label}
+             style={styles.checkboxItem}
+              position="leading"
+              status="checked" />
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SignupWithEmail6')}
+                style={{alignItems: 'center', marginTop: 80}}>
+                <GradientButton
+                  textStyle={{color: '#fff', fontSize: 20, textAlign: 'center'}}
+                  style={{
+                    borderRadius: 20,
+                    width: '65%',
+                    height: 55,
+                    justifyContent: 'center',
+                    top:50, // Centers the text vertically
+                  }}
+                  text={'Next'}
+                />
+              </TouchableOpacity>
             </View>
           )}
         </Formik>
@@ -253,13 +258,6 @@ const SignupWithEmail3 = () => {
     </View>
   );
 };
-
-const workoutOptions = [
-  { label: 'More than 5 times a week', value: 'first' },
-  { label: '3 to 5 times a week', value: 'second' },
-  { label: '1 to 3 times a week', value: 'third' },
-  { label: 'I rarely work out or move', value: 'fourth' },
-];
 
 const styles = StyleSheet.create({
   scrollViewContent: {
@@ -279,39 +277,24 @@ const styles = StyleSheet.create({
     color: '#767676',
     marginTop: -2,
   },
-  optionContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#222',
-    borderRadius: 10,
-    padding: 16,
-    marginVertical: 8,
+  textInput: {
+    marginVertical: 15,
+    backgroundColor: 'transparent',
+    borderRadius: 20,
+    color:"grey",
   },
-  selectedOption: {
-    backgroundColor: '#333',
+  label: {
+    // color: '#FFFFFF', 
+    fontSize: 17, 
+    left:-40,
+    top:6,
   },
-  optionText: {
-    color: '#ccc',
-    fontSize: 16,
-  },
-  submitButtonContainer: {
-    alignItems: 'center',
-    marginTop: 80,
-  },
-  submitButtonText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '600',
-    textAlign:"center",
-    top:10,
-  },
-  submitButton: {
-    width: 250,
-    borderRadius: 25,
-    height: 50,
-    top:50,
+  checkboxItem: {
+
+    top:20,
+    right:20,
+  
   },
 });
 
-export default SignupWithEmail3;
+export default SignupWithEmail4;

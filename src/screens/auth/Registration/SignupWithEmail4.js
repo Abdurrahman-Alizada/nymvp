@@ -37,7 +37,7 @@ const validationSchema = Yup.object().shape({
   surName: Yup.string().label('Sur name'),
 });
 
-const SignupWithEmail3 = () => {
+const SignupWithEmail4 = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState('');
@@ -45,11 +45,7 @@ const SignupWithEmail3 = () => {
   const [showTryAgainButton, setShowTryAgainButton] = useState(false);
   const [gender, setGender] = useState('male');
   const [workoutFrequency, setWorkoutFrequency] = useState('first');
-  // const handleSubmit = () => {
-  //   console.log('Next button pressed'); // Log to see if this is reached
-  //   navigation.navigate('SignupWithEmail4');
-  // };
-  // };
+
   const emailRef = useRef('');
 
   const [registerUser, { isLoading }] = useRegisterUserMutation();
@@ -140,7 +136,7 @@ const SignupWithEmail3 = () => {
         <StatusBar barStyle="dark-content" />
 
         <Text style={styles.headerText}>CREATE PROFILE</Text>
-        <Text style={styles.subHeaderText}>How often do you work out?</Text>
+        <Text style={styles.subHeaderText}>Tell us about your goals.</Text>
 
         <Formik
           innerRef={formikRef}
@@ -187,7 +183,7 @@ const SignupWithEmail3 = () => {
                       <Button
                         onPress={() => {
                           setVisible(false);
-                          navigation.navigate('SignupWithEmail4');
+                          navigation.navigate('Login');
                         }}>
                         Go to login
                       </Button>
@@ -203,11 +199,7 @@ const SignupWithEmail3 = () => {
                 </Dialog>
               </Portal>
 
-              {/* Registration Information Form Fields */}
-              {/* (Existing form fields for email, address, etc.) */}
-
-              {/* Workout Frequency Selection */}
-              {/* <Text style={styles.subHeaderText}>Workout Frequency</Text> */}
+           
               {workoutOptions.map((option, index) => (
                 <TouchableRipple
                   key={index}
@@ -231,8 +223,9 @@ const SignupWithEmail3 = () => {
                 </TouchableRipple>
               ))}
 
+             
 <TouchableOpacity
-  onPress={() => navigation.navigate('SignupWithEmail4')}
+  onPress={() => navigation.navigate('SignupWithEmail5')}
   style={{ alignItems: 'center', marginTop: 80 }}
 >
   <GradientButton
@@ -241,7 +234,7 @@ const SignupWithEmail3 = () => {
       borderRadius: 20,
       width: '65%',
       height: 55,
-      justifyContent: 'center', // Centers the text vertically
+      justifyContent: 'center', 
     }}
     text={'Next'}
   />
@@ -255,10 +248,12 @@ const SignupWithEmail3 = () => {
 };
 
 const workoutOptions = [
-  { label: 'More than 5 times a week', value: 'first' },
-  { label: '3 to 5 times a week', value: 'second' },
-  { label: '1 to 3 times a week', value: 'third' },
-  { label: 'I rarely work out or move', value: 'fourth' },
+  { label: 'Lose Weight ', value: 'first' },
+  { label: 'Gain Weight', value: 'second' },
+  { label: 'Gain Muscle ', value: 'third' },
+  { label: 'Maintain Weight', value: 'fourth' },
+  { label: 'Use without a goal', value: 'fourth' },
+
 ];
 
 const styles = StyleSheet.create({
@@ -283,13 +278,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#222',
-    borderRadius: 10,
-    padding: 16,
+    // backgroundColor: 'black',
+    borderRadius: 20,
+    borderWidth: 2, // Adjust thickness here
+    borderColor: 'grey', // Change to your preferred border color
+    padding: 10,
     marginVertical: 8,
-  },
+    
+},
+
   selectedOption: {
-    backgroundColor: '#333',
+    // backgroundColor: '#050505',
   },
   optionText: {
     color: '#ccc',
@@ -297,7 +296,7 @@ const styles = StyleSheet.create({
   },
   submitButtonContainer: {
     alignItems: 'center',
-    marginTop: 80,
+    marginTop: 100,
   },
   submitButtonText: {
     color: '#fff',
@@ -308,10 +307,12 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     width: 250,
-    borderRadius: 25,
+    borderRadius: 20,
     height: 50,
-    top:50,
+    top:10,
   },
 });
 
-export default SignupWithEmail3;
+export default SignupWithEmail4;
+
+
