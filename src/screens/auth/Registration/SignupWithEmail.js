@@ -200,26 +200,13 @@ const SignupWithEmail = () => {
                 </Dialog>
               </Portal>
 
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginVertical: '5%',
-                  textAlign: 'center',
-                  fontWeight: '700',
-                }}>
-                CREATE PROFILE
+              <Text style={{ fontSize: 18, marginVertical: '5%', textAlign: "center", fontWeight: '700' }}>
+              CREATE PROFILE
               </Text>
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginVertical: '2%',
-                  textAlign: 'center',
-                  color: '#767676',
-                  marginTop: -2,
-                }}>
-                Register Information
+              <Text style={{ fontSize: 18, marginVertical: '2%', textAlign: "center",  }}>
+              Register Information
               </Text>
-              {/* <Text style={{ fontWeight: '800', marginBottom: '2%' }}>Email Address</Text> */}
+              <Text style={{ fontWeight: '800', marginBottom: '2%' }}>Email</Text>
               <TextInput
                 placeholder="Email address"
                 onChangeText={handleChange('email')}
