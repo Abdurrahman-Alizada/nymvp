@@ -186,7 +186,6 @@ const HomeScreenIndex = () => {
           pagingEnabled={isPagingEnabled}
           ref={carouselRef}
           renderItem={({ item }) => (
-//       
             <View style={{ borderRadius: 10, overflow: 'hidden' }}>
               <Image
                 source={item.image}
@@ -249,7 +248,6 @@ const HomeScreenIndex = () => {
             marginTop: 10,
           }}
         >
-
 
           {workoutData.map((workout, index) => (
             <View key={index} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
