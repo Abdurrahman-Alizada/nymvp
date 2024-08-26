@@ -186,12 +186,6 @@ const HomeScreenIndex = () => {
           pagingEnabled={isPagingEnabled}
           ref={carouselRef}
           renderItem={({ item }) => (
-//             <Pressable 
-//   style={{ borderRadius: 10, overflow: 'hidden' }}  
-//   onPress={() => navigation.navigate("Recipe")}
-// >
-//   <Image source={item} style={{ width: '100%', height: '100%', resizeMode: 'cover' }} />
-// </Pressable>
             <View style={{ borderRadius: 10, overflow: 'hidden' }}>
               <Image
                 source={item.image}

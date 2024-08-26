@@ -1,12 +1,14 @@
-import { Viev, TouchableOpacity, Image, View } from 'react-native'
+import { Viev, TouchableOpacity, Image, View, StatusBar } from 'react-native'
 import React from 'react'
-import { Text } from 'react-native-paper'
+import { Text, useTheme } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 
-const WorkoutsScreensAppbar = ({isMain, title}) => {
+const WorkoutsScreensAppbar = ({ isMain, title }) => {
   const navigation = useNavigation()
+  const theme = useTheme()
   return (
-    <View style={{ flexDirection: "row", alignItems: "flex-end", justifyContent: isMain ? "center" : "space-between", padding: "5%" }}>
+    <View style={{ flexDirection: "row",  alignItems: "flex-end", justifyContent: isMain ? "center" : "space-between", paddingHorizontal: "5%" }}>
+      <StatusBar backgroundColor={theme.colors.background} translucent={false} barStyle={"light-content"} />
       {!isMain &&
         <TouchableOpacity onPress={() => navigation.goBack()}>
 
@@ -32,7 +34,7 @@ const WorkoutsScreensAppbar = ({isMain, title}) => {
             // alignSelf: 'center',
           }}
         />
-        <Text style={{ color: "#fff" }}>{title}</Text>
+        <Text style={{ color: "#fff", marginTop: 5 }}>{title}</Text>
       </View>
       <View></View>
     </View>

@@ -215,7 +215,7 @@ const LoginScreen = ({ navigation }) => {
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.replace("BottomTabs")}>
                   <GradientButton
                     textStyle={{ color: "#fff", letterSpacing: 3 }}
                     style={{

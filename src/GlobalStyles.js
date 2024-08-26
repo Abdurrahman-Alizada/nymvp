@@ -25,6 +25,8 @@ export const lightPalette = {
 };
 
 export const darkPalette = {
+  primary:"#163C31",
+  cardBackground:"#1C1C1C",
   background: '#090909',
   orange:'#F77A55'
 };
