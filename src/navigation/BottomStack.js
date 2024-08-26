@@ -9,6 +9,9 @@ import Recipe from '../screens/Home/Recipe';
 import Instruction from '../screens/Home/Instruction';
 import grocerylist from '../screens/Home/grocerylist';
 import profileoveriew from '../screens/Home/profile/profileoveriew';
+import Workouts from '../screens/Home/TabScreens/Workouts';
+import HistorScreen from '../screens/Home/TabScreens/History';
+import ActiveWorkoutScreen from '../screens/Home/TabScreens/ActiveWorkouts';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -85,7 +88,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Workouts"
-        component={HomeScreenIndex}
+        component={Workouts}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
@@ -95,7 +98,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Nutrition"
-        component={HomeScreenIndex}
+        component={HistorScreen}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
@@ -105,7 +108,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Meditation"
-        component={HomeScreenIndex}
+        component={ActiveWorkoutScreen}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (

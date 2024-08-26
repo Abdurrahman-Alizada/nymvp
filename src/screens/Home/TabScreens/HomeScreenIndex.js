@@ -1,22 +1,23 @@
-
-import React, {useRef} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView, Pressable} from 'react-native';
-import {Card} from 'react-native-paper';
-import Carousel from 'react-native-reanimated-carousel'; // Import the carousel
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import React, { useState, useRef } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Card } from 'react-native-paper';
+import Carousel from 'react-native-reanimated-carousel';
+import { width } from '../../../GlobalStyles'; // Assuming this provides the screen width
 
 const HomeScreenIndex = () => {
-  const scrollViewRef = useRef(null);
-  const navigation = useNavigation(); // Get the navigation object
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isPagingEnabled, setIsPagingEnabled] = useState(true);
+  const carouselRef = useRef(null);
 
   const itineraryData = [
-    {day: 'SUN', date: '12'},
-    {day: 'MON', date: '13'},
-    {day: 'TUE', date: '14'},
-    {day: 'WED', date: '15'},
-    {day: 'THU', date: '16'},
-    {day: 'FRI', date: '17'},
-    {day: 'SAT', date: '18'},
+    { day: 'SUN', date: '12' },
+    { day: 'MON', date: '13' },
+    { day: 'TUE', date: '14' },
+    { day: 'WED', date: '15' },
+    { day: 'THU', date: '16' },
+    { day: 'FRI', date: '17' },
+    { day: 'SAT', date: '18' },
   ];
 
   const workoutData = [
@@ -55,18 +56,17 @@ const HomeScreenIndex = () => {
     require('../../../assets/dinner.png'),
   ];
 
-  const scrollRight = () => {
-    scrollViewRef.current.scrollTo({
-      x: scrollViewRef.current.contentOffset.x + 100, // Adjust scroll distance
-      animated: true,
-    });
+  // Carousel dimensions
+  const PAGE_WIDTH = width; // Adjust this if necessary
+  const CAROUSEL_WIDTH = PAGE_WIDTH * 0.85;
+  const CAROUSEL_HEIGHT = PAGE_WIDTH / 2;
+
+  const handlePrevious = () => {
+    carouselRef.current?.scrollTo({ count: -1, animated: true });
   };
 
-  const scrollLeft = () => {
-    scrollViewRef.current.scrollTo({
-      x: scrollViewRef.current.contentOffset.x - 100, // Adjust scroll distance
-      animated: true,
-    });
+  const handleNext = () => {
+    carouselRef.current?.scrollTo({ count: 1, animated: true });
   };
 
   return (
@@ -74,15 +74,17 @@ const HomeScreenIndex = () => {
       style={{
         flex: 1,
         backgroundColor: 'black',
+        paddingBottom: '25%',
       }}>
-      <View style={{width: '100%'}}>
+      {/* Logo Section */}
+      <View style={{ width: '100%' }}>
         <Image
           source={require('../../../assets/logob.png')}
           style={{
             height: 35,
             width: 170,
             resizeMode: 'contain',
-            marginTop: 60,
+            marginTop: 40,
             alignSelf: 'center',
           }}
         />
@@ -98,17 +100,26 @@ const HomeScreenIndex = () => {
           marginTop: 20,
         }}>
         <View>
-          <Text style={{color: '#fff'}}>Good Morning</Text>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#fff'}}>
+          <Text style={{ color: '#aaa' }}>Good Morning</Text>
+          <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#fff' }}>
             Axel
           </Text>
         </View>
         <View>
-          <Image source={require('../../../assets/profilepic.png')} />
+          <Image
+            source={require('../../../assets/profilepic.png')}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+              borderColor: '#333',
+              borderWidth: 2,
+            }}
+          />
         </View>
       </View>
 
-      <View style={{padding: '5%'}}>
+      <View style={{ padding: '5%' }}>
         <Text
           style={{
             fontSize: 20,
@@ -121,127 +132,161 @@ const HomeScreenIndex = () => {
         </Text>
         <Card
           elevation={3}
-          style={{backgroundColor: '#000'}}
-          contentStyle={{flexDirection: 'row', marginTop: '5%'}}>
+          style={{
+            backgroundColor: '#333',
+            borderRadius: 20,
+            padding: 10,
+            marginTop: 10,
+          }}
+          contentStyle={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
           {itineraryData.map((item, index) => (
             <TouchableOpacity
               key={index}
               style={{
-                backgroundColor: 'white',
-                borderRadius: 30,
+                backgroundColor: index === 2 ? '#5EC8D8' : '#000',
+                borderRadius: 25,
                 width: 50,
-                height: 50,
+                height: 60,
                 justifyContent: 'center',
                 alignItems: 'center',
                 marginHorizontal: 5,
               }}>
-              <Text style={{color: 'black', fontSize: 12, fontWeight: '400'}}>
+              <Text style={{ color: 'white', fontSize: 12, fontWeight: '400' }}>
                 {item.day}
               </Text>
-              <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
+              <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
                 {item.date}
               </Text>
             </TouchableOpacity>
           ))}
         </Card>
       </View>
-      <View style={{ marginTop: 20, height: 200 }}>
+      {/* Meals Carousel */}
+      <View style={{ marginTop: 20, height: CAROUSEL_HEIGHT, alignItems: "center", position: 'relative' }}>
         <Carousel
           loop
-          width={300} // Adjust width as needed
-          height={200} // Adjust height as needed
-          autoPlay={true}
+          width={CAROUSEL_WIDTH}
+          height={CAROUSEL_HEIGHT}
+          autoPlay={isAutoPlay}
+          autoPlayInterval={isFast ? 100 : 2000}
           data={images}
+          pagingEnabled={isPagingEnabled}
+          ref={carouselRef}
           renderItem={({ item }) => (
-
-            
             <Pressable 
   style={{ borderRadius: 10, overflow: 'hidden' }}  
   onPress={() => navigation.navigate("Recipe")}
 >
   <Image source={item} style={{ width: '100%', height: '100%', resizeMode: 'cover' }} />
 </Pressable>
+            <View style={{ borderRadius: 10, overflow: 'hidden' }}>
+              <Image
+                source={item}
+                style={{ width: '100%', height: '100%', resizeMode: 'cover' }}
+              />
+            </View>
           )}
         />
+        {/* Left Navigation Button */}
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: 10,
+            transform: [{ translateY: -20 }],
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            borderRadius: 25,
+            padding: 10,
+          }}
+          onPress={handlePrevious}
+        >
+          <Text style={{ color: 'white', fontSize: 20 }}>‹</Text>
+        </TouchableOpacity>
+        {/* Right Navigation Button */}
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            top: '50%',
+            right: 10,
+            transform: [{ translateY: -20 }],
+            backgroundColor: "#000",
+            borderRadius: 25,
+            padding: 10,
+          }}
+          onPress={handleNext}
+        >
+          <Text style={{ color: 'white', fontSize: 20 }}>›</Text>
+        </TouchableOpacity>
       </View>
 
-      <View style={{marginTop: 10}}>
-        
-
-
+      {/* Workouts Section */}
+      <View style={{ marginTop: 20, paddingHorizontal: '5%', paddingBottom: '40%' }}>
         <Text
           style={{
             fontSize: 20,
             fontWeight: '600',
-            top: 20,
             color: 'white',
-            left: 40,
+            marginBottom: 10,
           }}>
-          WORKOUT
+          WORKOUTS
         </Text>
 
         <View style={{padding: '5%', margin: '5%'}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View>
+     <Card 
+     elevation={3}
+     style={{
+      backgroundColor: '#333',
+      // borderRadius: 20,
+      padding: 10,
+      marginTop: 10,
+    }}
+     >
+
+        {workoutData.map((workout, index) => (
+          <View key={index} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
+            <View style={{ flex: 1 }}>
               <Text
                 style={{
                   color: '#fff',
                   fontWeight: '700',
                   fontSize: 14,
                   letterSpacing: 2,
-                  lineHeight: 16,
+                  marginBottom: 10,
                 }}>
-                Monday - Arms
+                {`${workout.day} - ${workout.routine}`}
               </Text>
-              <Text style={{color: '#fff', fontSize: 12}}>Pull ups x5</Text>
-              <Text style={{color: '#fff', fontSize: 12}}>Rope puchdowns</Text>
-              <Text style={{color: '#fff', fontSize: 12}}>Preachers curl</Text>
-
-              <Text style={{color: '#fff', fontSize: 12}}>Hammer curls</Text>
-
-              <Text style={{color: '#fff', fontSize: 12}}>Inclined curls</Text>
+              <Text style={{ color: '#fff', fontSize: 12 }}>Pull ups x5</Text>
+              <Text style={{ color: '#fff', fontSize: 12 }}>Rope pushdowns</Text>
+              <Text style={{ color: '#fff', fontSize: 12 }}>Preachers curl</Text>
+              <Text style={{ color: '#fff', fontSize: 12 }}>Hammer curls</Text>
+              <Text style={{ color: '#fff', fontSize: 12 }}>Inclined curls</Text>
             </View>
             <View>
               <Image
-                style={{width: 109, height: 108}}
-                source={require('../../../assets/Arms.png')}
+                style={{ width: 109, height: 108, borderRadius: 10, position: 'relative' }}
+                source={workout.image}
               />
-            </View>
-          </View>
-        </View>
-
-        <View style={{padding: '5%', margin: '5%'}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <View>
-              <Text
+              <TouchableOpacity
                 style={{
-                  color: '#fff',
-                  fontWeight: '700',
-                  fontSize: 14,
-                  letterSpacing: 2,
-                  lineHeight: 16,
+                  position: 'absolute',
+                  top: 40,
+                  left: 30,
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  padding: 10,
+                  borderRadius: 5,
                 }}>
-                Monday - Arms
-              </Text>
-              <Text style={{color: '#fff', fontSize: 12}}>Pull ups x5</Text>
-              <Text style={{color: '#fff', fontSize: 12}}>Rope puchdowns</Text>
-              <Text style={{color: '#fff', fontSize: 12}}>Preachers curl</Text>
-
-              <Text style={{color: '#fff', fontSize: 12}}>Hammer curls</Text>
-
-              <Text style={{color: '#fff', fontSize: 12}}>Inclined curls</Text>
-            </View>
-            <View>
-              <Image
-                style={{width: 109, height: 108}}
-                source={require('../../../assets/Arms.png')}
-              />
+                <Text style={{ color: '#fff' }}>START</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </View>
-
+        ))}
+     </Card>
       </View>
-
     </ScrollView>
   );
 };
