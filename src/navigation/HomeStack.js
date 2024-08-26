@@ -1,8 +1,11 @@
+
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Recipe from '../screens/Home/Recipe';
+
 import { LoginScreen } from '../screens/auth/Index';
 import StartWorkouts from '../screens/Home/Cardio';
+import Recipe from '../screens/Home/Recipe';
+import StartWorkouts from '../screens/Home/StartWorkouts';
 import Meditation from '../screens/Home/Meditation';
 const Stack = createStackNavigator();
 
@@ -11,11 +14,9 @@ const HomeStack = () => {
     <Stack.Navigator initialRouteName='Recipi' >
 
       <Stack.Screen
-        name="Recipi"
+        name="Recipe"
         component={Recipe}
-        options={{
-          headerShown: false,
-        }}
+        
       />
       <Stack.Screen
         name="Cardio"

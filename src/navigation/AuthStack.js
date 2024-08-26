@@ -22,6 +22,8 @@ import SignupWithEmail6 from '../screens/auth/Registration/SignupWithEmail6';
 
 import ForgotPassword from '../screens/auth/ForgotPassword/ForgotPasswordScreen';
 import GeneralAppbar from '../components/Appbars/GeneralAppbar';
+// import Recipe from '../screens/Home/Recipe';
+// import HomeStack from './HomeStack';
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
@@ -91,6 +93,16 @@ const AuthStack = () => {
       }}
       component={SignupWithEmail6}
     />
+    {/* <Stack.Screen
+      name="Recipe"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+        title: 'Sign up with email',
+      }}
+      component={Recipe}
+    /> */}
+     
       <Stack.Screen
         name="FreeflexerCreatePassword"
         options={{

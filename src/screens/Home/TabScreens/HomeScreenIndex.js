@@ -98,7 +98,6 @@ const HomeScreenIndex = () => {
         />
       </View>
 
-      {/* Greeting Section */}
       <View
         style={{
           flexDirection: 'row',
@@ -173,7 +172,6 @@ const HomeScreenIndex = () => {
           ))}
         </Card>
       </View>
-
       {/* Meals Carousel */}
       <View style={{ backgroundColor: theme.colors.cardBackground, borderRadius: 10,padding:10, margin: 20, height: CAROUSEL_HEIGHT, alignItems: "center", position: 'relative' }}>
 
@@ -188,6 +186,7 @@ const HomeScreenIndex = () => {
           pagingEnabled={isPagingEnabled}
           ref={carouselRef}
           renderItem={({ item }) => (
+//       
             <View style={{ borderRadius: 10, overflow: 'hidden' }}>
               <Image
                 source={item.image}
@@ -250,6 +249,7 @@ const HomeScreenIndex = () => {
             marginTop: 10,
           }}
         >
+
 
           {workoutData.map((workout, index) => (
             <View key={index} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
