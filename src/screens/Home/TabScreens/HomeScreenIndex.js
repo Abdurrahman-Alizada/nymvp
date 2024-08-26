@@ -1,117 +1,13 @@
-// import React from 'react';
-// import {View, Text, Image, TouchableOpacity} from 'react-native';
 
-// const HomeScreenIndex = () => {
-//   const itineraryData = [
-//     {day: 'SUN', date: '12'},
-//     {day: 'MON', date: '13'},
-//     {day: 'TUE', date: '14'},
-//     {day: 'WED', date: '15'},
-//     {day: 'THU', date: '16'},
-//     {day: 'FRI', date: '17'},
-//     {day: 'SAT', date: '18'},
-//   ];
-
-//   return (
-//     <View
-//       style={{
-//         flex: 1,
-//         backgroundColor: 'black',
-//         alignItems: 'center',
-//         padding: 20,
-//       }}>
-//       {/* Logo Image */}
-//       <Image
-//         source={require('../../../assets/logob.png')}
-//         style={{
-//           height: '4%',
-//           width: '60%',
-//           resizeMode: 'center',
-//           marginTop: 60,
-//         }}
-//       />
-
-//       {/* Greeting Section */}
-//       <View style={{marginTop: 40}}>
-//         <Text
-//           style={{
-//             fontSize: 16,
-//             alignSelf: 'flex-start',
-//             color: 'grey',
-//             left: 40,
-//             top: 30,
-//           }}>
-//           Good Morning,
-//         </Text>
-//         <Text
-//           style={{
-//             fontSize: 26,
-//             alignSelf: 'flex-start',
-//             color: 'white',
-//             fontWeight: '700',
-//             left: 40,
-//             top: 30,
-//           }}>
-//           Axel
-//         </Text>
-//         <Image
-//           source={require('../../../assets/profilepic.png')}
-//           style={{
-//             width: 60,
-//             height: 60,
-//             borderRadius: 45,
-//             borderWidth: 2,
-//             borderColor: '#4BC1C8',
-//             marginTop: -40,
-//             right: -340,
-//           }}
-//         />
-//         <Text
-//           style={{
-//             fontSize: 20,
-//             alignSelf: 'flex-start',
-//             color: 'white',
-//             fontWeight: '600',
-//             left: -110,
-//             top: 50,
-//           }}>
-//           YOUR ITINERARY
-//         </Text>
-
-//         {/* Circular Date Buttons */}
-//         <View style={{flexDirection: 'row', marginTop: 30, borderWidth: 3,borderColor:"black",height:"30%",width:"70%"}}>
-//           {itineraryData.map((item, index) => (
-//             <TouchableOpacity
-//               key={index}
-//               style={{
-//                 backgroundColor: 'white',
-//                 borderRadius: 30,
-//                 width: 50,
-//                 height: 50,
-//                 justifyContent: 'center',
-//                 alignItems: 'center',
-//                 marginHorizontal: 5,
-//               }}>
-//               <Text style={{color: 'black', fontSize: 12, fontWeight: '400'}}>
-//                 {item.day}
-//               </Text>
-//               <Text style={{color: 'black', fontSize: 18, fontWeight: '600'}}>
-//                 {item.date}
-//               </Text>
-//             </TouchableOpacity>
-//           ))}
-//         </View>
-//       </View>
-//     </View>
-//   );
-// };
 import React, {useRef} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, Pressable} from 'react-native';
 import {Card} from 'react-native-paper';
 import Carousel from 'react-native-reanimated-carousel'; // Import the carousel
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 const HomeScreenIndex = () => {
   const scrollViewRef = useRef(null);
+  const navigation = useNavigation(); // Get the navigation object
 
   const itineraryData = [
     {day: 'SUN', date: '12'},
@@ -192,7 +88,6 @@ const HomeScreenIndex = () => {
         />
       </View>
 
-      {/* Greeting Section */}
       <View
         style={{
           flexDirection: 'row',
@@ -250,7 +145,6 @@ const HomeScreenIndex = () => {
           ))}
         </Card>
       </View>
-      {/* react-native-reanimated-carousel view */}
       <View style={{ marginTop: 20, height: 200 }}>
         <Carousel
           loop
@@ -259,15 +153,19 @@ const HomeScreenIndex = () => {
           autoPlay={true}
           data={images}
           renderItem={({ item }) => (
-            <View style={{ borderRadius: 10, overflow: 'hidden' }}>
-              <Image source={item} style={{ width: '100%', height: '100%', resizeMode: 'cover' }} />
-            </View>
+
+            
+            <Pressable 
+  style={{ borderRadius: 10, overflow: 'hidden' }}  
+  onPress={() => navigation.navigate("Recipe")}
+>
+  <Image source={item} style={{ width: '100%', height: '100%', resizeMode: 'cover' }} />
+</Pressable>
           )}
         />
       </View>
 
       <View style={{marginTop: 10}}>
-        {/* Circular Date Buttons */}
         
 
 
@@ -282,7 +180,6 @@ const HomeScreenIndex = () => {
           WORKOUT
         </Text>
 
-        {/* Workout Details */}
         <View style={{padding: '5%', margin: '5%'}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View>
