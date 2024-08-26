@@ -69,13 +69,13 @@ const StartWorkoutsScreen = ({ }) => {
                     </Card.Content>
                 </Card>
 
-                <TouchableOpacity onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "StartWorkouts" } })}>
+                <TouchableOpacity onPress={() => navigation.navigate({ name: "BottomTabs", params: { screen: "Meditation" } })}>
                     <GradientButton
                         textStyle={{ color: "#fff", letterSpacing: 3 }}
                         style={{
                             padding: "5%", alignItems: "center", marginTop: 40, borderRadius: 20
                         }}
-                        text={"Start Workouts"}
+                        text={"Start Workouts adsf"}
                     />
                 </TouchableOpacity>
             </ScrollView>

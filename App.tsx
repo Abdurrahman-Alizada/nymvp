@@ -76,8 +76,8 @@ export const App = () => {
   return (
     <ThemeContext.Provider value={preferences}>
       <Provider store={store}>
-        <PaperProvider theme={theme}>
-        {/* <PaperProvider theme={CombinedDarkTheme}> */}
+        {/* <PaperProvider theme={theme}> */}
+        <PaperProvider theme={CombinedDarkTheme}>
           <NavigationContainer>
             <Stack.Navigator initialRouteName="SplashScreen">
               <Stack.Screen
