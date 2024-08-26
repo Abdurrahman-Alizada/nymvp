@@ -3,6 +3,9 @@ import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navig
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreenIndex from '../screens/Home/TabScreens/HomeScreenIndex';
 import { useTheme } from 'react-native-paper';
+import Workouts from '../screens/Home/TabScreens/Workouts';
+import HistorScreen from '../screens/Home/TabScreens/History';
+import ActiveWorkoutScreen from '../screens/Home/TabScreens/ActiveWorkouts';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -39,7 +42,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Workouts"
-        component={HomeScreenIndex}
+        component={Workouts}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
@@ -49,7 +52,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Nutrition"
-        component={HomeScreenIndex}
+        component={HistorScreen}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
@@ -59,7 +62,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Meditation"
-        component={HomeScreenIndex}
+        component={ActiveWorkoutScreen}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
