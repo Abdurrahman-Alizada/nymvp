@@ -1,5 +1,5 @@
-import React, {useRef, useState} from 'react';
-import {StyleSheet, StatusBar, View, ScrollView} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, StatusBar, View, ScrollView } from 'react-native';
 
 import {
   TextInput,
@@ -10,10 +10,10 @@ import {
   Button,
   useTheme,
 } from 'react-native-paper';
-import {Formik} from 'formik';
-import {TouchableOpacity} from 'react-native';
+import { Formik } from 'formik';
+import { TouchableOpacity } from 'react-native';
 import * as Yup from 'yup';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import GradientText from '../../../components/GradientText';
 import GradientButton from '../../../components/GradientButton';
 import {
@@ -21,12 +21,13 @@ import {
   useResendEmailForUserRegistrationMutation,
 } from '../../../redux/reducers/user/userThunk';
 import AuthAppbar from '../../../components/Appbars/AuthAbbar'; // Adjust import path as needed
-import {TextInput as PaperTextInput} from 'react-native-paper';
+import { TextInput as PaperTextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {height, width} from '../../../GlobalStyles';
+import { height, width } from '../../../GlobalStyles';
 import SocialLogin from '../Login/SocialLogin';
 import GradientIconButton from '../../../components/GradientIconButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
+import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -54,8 +55,8 @@ const SignupWithEmail = () => {
 
   const emailRef = useRef('');
 
-  const [registerUser, {isLoading}] = useRegisterUserMutation();
-  const [resendEmailForUserRegistration, {isLoading: resendLoading}] =
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const [resendEmailForUserRegistration, { isLoading: resendLoading }] =
     useResendEmailForUserRegistrationMutation();
 
   const submitHandler = async (values, formikBag) => {
@@ -131,13 +132,12 @@ const SignupWithEmail = () => {
   const theme = useTheme();
 
   return (
-    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
-      <AuthAppbar title="Sign up today. Work tomorrow" />
-
+    <View style={{ flex: 1, paddingTop: "10%", backgroundColor: theme.colors.background }}>
+      <StatusBar barStyle="light-content" />
+      <WorkoutsScreensAppbar isMain={true} title={"CREATE PROFILE"} />
       <ScrollView
-        contentContainerStyle={{paddingHorizontal: '5%', paddingBottom: '5%'}}
+        contentContainerStyle={{ paddingHorizontal: '5%', paddingBottom: '5%' }}
         showsVerticalScrollIndicator={false}>
-        <StatusBar barStyle="dark-content" />
 
         <Formik
           innerRef={formikRef}
@@ -152,8 +152,8 @@ const SignupWithEmail = () => {
             surName: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values, {resetForm}) => {
-            submitHandler(values, {resetForm});
+          onSubmit={(values, { resetForm }) => {
+            submitHandler(values, { resetForm });
           }}>
           {({
             handleChange,
@@ -226,12 +226,12 @@ const SignupWithEmail = () => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 mode="outlined"
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: '9%'}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: '9%' }}
                 outlineColor={theme.colors.secondary}
               />
               {errors.email && touched.email && (
-                <Text style={{color: 'red'}}>{errors.email}</Text>
+                <Text style={{ color: 'red' }}>{errors.email}</Text>
               )}
 
               <TextInput
@@ -240,12 +240,12 @@ const SignupWithEmail = () => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 mode="outlined"
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: '3%', marginTop: 20}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: '3%', marginTop: 20 }}
                 outlineColor={theme.colors.secondary}
               />
               {errors.email && touched.email && (
-                <Text style={{color: 'red'}}>{errors.email}</Text>
+                <Text style={{ color: 'red' }}>{errors.email}</Text>
               )}
 
               <PaperTextInput
@@ -255,8 +255,8 @@ const SignupWithEmail = () => {
                 value={values.password}
                 mode="outlined"
                 secureTextEntry={!passwordVisible}
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: 20}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: 20 }}
                 outlineColor={theme.colors.secondary}
                 right={
                   <PaperTextInput.Icon
@@ -266,7 +266,7 @@ const SignupWithEmail = () => {
                 }
               />
               {errors.password && touched.password && (
-                <Text style={{color: 'red'}}>{errors.password}</Text>
+                <Text style={{ color: 'red' }}>{errors.password}</Text>
               )}
 
               <PaperTextInput
@@ -276,8 +276,8 @@ const SignupWithEmail = () => {
                 value={values.password}
                 mode="outlined"
                 secureTextEntry={!passwordVisible}
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: 20}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: 20 }}
                 outlineColor={theme.colors.secondary}
                 right={
                   <PaperTextInput.Icon
@@ -287,7 +287,7 @@ const SignupWithEmail = () => {
                 }
               />
               {errors.password && touched.password && (
-                <Text style={{color: 'red'}}>{errors.password}</Text>
+                <Text style={{ color: 'red' }}>{errors.password}</Text>
               )}
 
               <TextInput
@@ -296,12 +296,12 @@ const SignupWithEmail = () => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 mode="outlined"
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: '3%', marginTop: 20}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: '3%', marginTop: 20 }}
                 outlineColor={theme.colors.secondary}
               />
               {errors.email && touched.email && (
-                <Text style={{color: 'red'}}>{errors.email}</Text>
+                <Text style={{ color: 'red' }}>{errors.email}</Text>
               )}
 
               <View
@@ -314,14 +314,14 @@ const SignupWithEmail = () => {
               <View
                 style={{
                   flexDirection: 'row',
-                  marginVertical:"5%"
+                  marginVertical: "5%"
                 }}>
                 <GradientIconButton
                   style={{
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginHorizontal: 40,
-                    left:20,
+                    left: 20,
                     borderWidth: 1,
                     borderColor: '#555',
                     width: 50,
@@ -349,7 +349,7 @@ const SignupWithEmail = () => {
                     borderColor: '#555',
                     width: 50,
                     height: 50,
-                    left:2,
+                    left: 2,
 
                     borderRadius: 10,
                     backgroundColor: 'transparent',
@@ -369,7 +369,7 @@ const SignupWithEmail = () => {
                     marginHorizontal: 10,
                     borderWidth: 1,
                     borderColor: '#555',
-                    left:10,
+                    left: 10,
 
                     width: 50,
                     height: 50,
@@ -386,16 +386,16 @@ const SignupWithEmail = () => {
                 </GradientIconButton>
               </View>
               <TouchableOpacity
-              onPress={() => navigation.navigate('SignUpwithEmail2')}>
+                onPress={() => navigation.navigate('SignUpwithEmail2')}>
 
                 <GradientButton
-                  textStyle={{color: '#fff',  fontSize: 20,top:10}}
+                  textStyle={{ color: '#fff', fontSize: 20, top: 10 }}
                   style={{
                     //padding: '5%',
                     alignItems: 'center',
                     // marginTop: 90,
                     borderRadius: 20,
-                    top:10,
+                    top: 10,
                     width: '60%',
                     height: '25%',
                     left: 65,

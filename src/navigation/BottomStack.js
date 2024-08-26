@@ -6,6 +6,7 @@ import { useTheme } from 'react-native-paper';
 import Workouts from '../screens/Home/TabScreens/Workouts';
 import HistorScreen from '../screens/Home/TabScreens/History';
 import ActiveWorkoutScreen from '../screens/Home/TabScreens/ActiveWorkouts';
+import Profile from '../screens/Home/TabScreens/Profile';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -66,17 +67,17 @@ export default function BottomTabsStack() {
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="meditation" color={color} size={28} />
+            <MaterialCommunityIcons name="run" color={color} size={28} />
           ),
         }}
       />
       <Tab.Screen
-        name="Running"
-        component={HomeScreenIndex}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="run" color={color} size={28} />
+            <MaterialCommunityIcons name="account" color={color} size={28} />
           ),
         }}
       />

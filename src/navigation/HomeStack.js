@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Recipe from '../screens/Home/Recipe';
 import { LoginScreen } from '../screens/auth/Index';
-import StartWorkouts from '../screens/Home/StartWorkouts';
+import StartWorkouts from '../screens/Home/Cardio';
 import Meditation from '../screens/Home/Meditation';
 const Stack = createStackNavigator();
 
