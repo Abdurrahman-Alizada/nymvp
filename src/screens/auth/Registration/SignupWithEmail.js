@@ -28,6 +28,7 @@ import SocialLogin from '../Login/SocialLogin';
 import GradientIconButton from '../../../components/GradientIconButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -132,265 +133,268 @@ const SignupWithEmail = () => {
   const theme = useTheme();
 
   return (
-    <View style={{ flex: 1, paddingTop: "7%", backgroundColor: theme.colors.background }}>
-      <StatusBar barStyle="light-content" />
-      <WorkoutsScreensAppbar isMain={true} title={"CREATE PROFILE"} />
-      <ScrollView
-        contentContainerStyle={{ paddingHorizontal: '5%', paddingBottom: '5%' }}
-        showsVerticalScrollIndicator={false}>
+    <ScreenGradientBackground>
 
-        <Formik
-          innerRef={formikRef}
-          initialValues={{
-            email: '',
-            addressLine1: '',
-            addressLine2: '',
-            addressLine3: '',
-            postCode: '',
-            city: '',
-            firstName: '',
-            surName: '',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={(values, { resetForm }) => {
-            submitHandler(values, { resetForm });
-          }}>
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-          }) => (
-            <View>
-              <Portal>
-                <Dialog visible={visible} onDismiss={() => setVisible(false)}>
-                  <Dialog.Title>Sign up</Dialog.Title>
-                  <Dialog.Content>
-                    <Paragraph>{message}</Paragraph>
-                  </Dialog.Content>
-                  <Dialog.Actions>
-                    {showTryAgainButton && (
+      <View style={{ flex: 1,  }}>
+        <StatusBar barStyle="light-content" />
+        <WorkoutsScreensAppbar isMain={true} title={"CREATE PROFILE"} />
+        <ScrollView
+          contentContainerStyle={{ paddingHorizontal: '5%', paddingBottom: '5%' }}
+          showsVerticalScrollIndicator={false}>
+
+          <Formik
+            innerRef={formikRef}
+            initialValues={{
+              email: '',
+              addressLine1: '',
+              addressLine2: '',
+              addressLine3: '',
+              postCode: '',
+              city: '',
+              firstName: '',
+              surName: '',
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { resetForm }) => {
+              submitHandler(values, { resetForm });
+            }}>
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+            }) => (
+              <View>
+                <Portal>
+                  <Dialog visible={visible} onDismiss={() => setVisible(false)}>
+                    <Dialog.Title>Sign up</Dialog.Title>
+                    <Dialog.Content>
+                      <Paragraph>{message}</Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                      {showTryAgainButton && (
+                        <Button
+                          onPress={() => {
+                            setVisible(false);
+                            resendEmail();
+                          }}>
+                          Resend Email
+                        </Button>
+                      )}
+                      {showLoginButton && (
+                        <Button
+                          onPress={() => {
+                            setVisible(false);
+                            navigation.navigate('Login');
+                          }}>
+                          Go to login
+                        </Button>
+                      )}
                       <Button
                         onPress={() => {
                           setVisible(false);
-                          resendEmail();
+                          emailRef.current = '';
                         }}>
-                        Resend Email
+                        Close
                       </Button>
-                    )}
-                    {showLoginButton && (
-                      <Button
-                        onPress={() => {
-                          setVisible(false);
-                          navigation.navigate('Login');
-                        }}>
-                        Go to login
-                      </Button>
-                    )}
-                    <Button
-                      onPress={() => {
-                        setVisible(false);
-                        emailRef.current = '';
-                      }}>
-                      Close
-                    </Button>
-                  </Dialog.Actions>
-                </Dialog>
-              </Portal>
+                    </Dialog.Actions>
+                  </Dialog>
+                </Portal>
 
-              <Text style={{color:"#767676", fontSize: 18, marginVertical: '2%', textAlign: "center",  }}>
-              Register Information
-              </Text>
-              <TextInput
-                placeholder="Email address"
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                mode="outlined"
-                theme={{ roundness: 20 }}
-                style={{ height: 60, marginTop: '9%' }}
-                outlineColor={theme.colors.secondary}
-              />
-              {errors.email && touched.email && (
-                <Text style={{ color: 'red' }}>{errors.email}</Text>
-              )}
-
-              <TextInput
-                placeholder="Full name"
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                mode="outlined"
-                theme={{ roundness: 20 }}
-                style={{ height: 60, marginTop: '3%', marginTop: 20 }}
-                outlineColor={theme.colors.secondary}
-              />
-              {errors.email && touched.email && (
-                <Text style={{ color: 'red' }}>{errors.email}</Text>
-              )}
-
-              <PaperTextInput
-                placeholder="Password"
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                mode="outlined"
-                secureTextEntry={!passwordVisible}
-                theme={{ roundness: 20 }}
-                style={{ height: 60, marginTop: 20 }}
-                outlineColor={theme.colors.secondary}
-                right={
-                  <PaperTextInput.Icon
-                    icon={passwordVisible ? 'eye-off' : 'eye'}
-                    onPress={() => setPasswordVisible(!passwordVisible)}
-                  />
-                }
-              />
-              {errors.password && touched.password && (
-                <Text style={{ color: 'red' }}>{errors.password}</Text>
-              )}
-
-              <PaperTextInput
-                placeholder="Password"
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                mode="outlined"
-                secureTextEntry={!passwordVisible}
-                theme={{ roundness: 20 }}
-                style={{ height: 60, marginTop: 20 }}
-                outlineColor={theme.colors.secondary}
-                right={
-                  <PaperTextInput.Icon
-                    icon={passwordVisible ? 'eye-off' : 'eye'}
-                    onPress={() => setPasswordVisible(!passwordVisible)}
-                  />
-                }
-              />
-              {errors.password && touched.password && (
-                <Text style={{ color: 'red' }}>{errors.password}</Text>
-              )}
-
-              <TextInput
-                placeholder="username"
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                mode="outlined"
-                theme={{ roundness: 20 }}
-                style={{ height: 60, marginTop: '3%', marginTop: 20 }}
-                outlineColor={theme.colors.secondary}
-              />
-              {errors.email && touched.email && (
-                <Text style={{ color: 'red' }}>{errors.email}</Text>
-              )}
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginTop: '2%',
-                }}></View>
-
-              <View
-                style={{
-                  flexDirection: 'row',
-                  marginVertical: "5%"
-                }}>
-                <GradientIconButton
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginHorizontal: 40,
-                    left: 20,
-                    borderWidth: 1,
-                    borderColor: '#555',
-                    width: 50,
-                    height: 50,
-                    borderRadius: 10,
-                    backgroundColor: 'transparent',
-                  }}>
-                  <TouchableOpacity style={{}}>
-                    <MaterialCommunityIcons
-                      name="facebook"
-                      size={24}
-                      color="#ffffff"
-                    />
-                  </TouchableOpacity>
-                </GradientIconButton>
-
-
-
-                <GradientIconButton
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: '#555',
-                    width: 50,
-                    height: 50,
-                    left: 2,
-
-                    borderRadius: 10,
-                    backgroundColor: 'transparent',
-                  }}>
-                  <TouchableOpacity style={{}}>
-                    <MaterialCommunityIcons
-                      name="google"
-                      size={24}
-                      color="#ffffff"
-                    />
-                  </TouchableOpacity>
-                </GradientIconButton>
-                <GradientIconButton
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginHorizontal: 10,
-                    borderWidth: 1,
-                    borderColor: '#555',
-                    left: 10,
-
-                    width: 50,
-                    height: 50,
-                    borderRadius: 10,
-                    backgroundColor: 'transparent',
-                  }}>
-                  <TouchableOpacity style={{}}>
-                    <MaterialCommunityIcons
-                      name="apple"
-                      size={24}
-                      color="#ffffff"
-                    />
-                  </TouchableOpacity>
-                </GradientIconButton>
-              </View>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SignUpwithEmail2')}>
-
-                <GradientButton
-                  textStyle={{ color: '#fff', fontSize: 20, }}
-                  style={{
-                    padding: '2%',
-                    alignItems: 'center',
-                    // marginTop: 90,
-                    borderRadius: 20,
-                    marginTop: 10,
-                    width: '60%',
-                    // height: '25%',
-                    left: 65,
-                  }}
-                  text={'Next'}
+                <Text style={{ color: "#767676", fontSize: 18, marginVertical: '2%', textAlign: "center", }}>
+                  Register Information
+                </Text>
+                <TextInput
+                  placeholder="Email address"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  mode="outlined"
+                  theme={{ roundness: 20 }}
+                  style={{ height: 60, marginTop: '9%' }}
+                  outlineColor={theme.colors.secondary}
                 />
-              </TouchableOpacity>
-            </View>
-          )}
-        </Formik>
-      </ScrollView>
-    </View>
+                {errors.email && touched.email && (
+                  <Text style={{ color: 'red' }}>{errors.email}</Text>
+                )}
+
+                <TextInput
+                  placeholder="Full name"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  mode="outlined"
+                  theme={{ roundness: 20 }}
+                  style={{ height: 60, marginTop: '3%', marginTop: 20 }}
+                  outlineColor={theme.colors.secondary}
+                />
+                {errors.email && touched.email && (
+                  <Text style={{ color: 'red' }}>{errors.email}</Text>
+                )}
+
+                <PaperTextInput
+                  placeholder="Password"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  mode="outlined"
+                  secureTextEntry={!passwordVisible}
+                  theme={{ roundness: 20 }}
+                  style={{ height: 60, marginTop: 20 }}
+                  outlineColor={theme.colors.secondary}
+                  right={
+                    <PaperTextInput.Icon
+                      icon={passwordVisible ? 'eye-off' : 'eye'}
+                      onPress={() => setPasswordVisible(!passwordVisible)}
+                    />
+                  }
+                />
+                {errors.password && touched.password && (
+                  <Text style={{ color: 'red' }}>{errors.password}</Text>
+                )}
+
+                <PaperTextInput
+                  placeholder="Password"
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  mode="outlined"
+                  secureTextEntry={!passwordVisible}
+                  theme={{ roundness: 20 }}
+                  style={{ height: 60, marginTop: 20 }}
+                  outlineColor={theme.colors.secondary}
+                  right={
+                    <PaperTextInput.Icon
+                      icon={passwordVisible ? 'eye-off' : 'eye'}
+                      onPress={() => setPasswordVisible(!passwordVisible)}
+                    />
+                  }
+                />
+                {errors.password && touched.password && (
+                  <Text style={{ color: 'red' }}>{errors.password}</Text>
+                )}
+
+                <TextInput
+                  placeholder="username"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  mode="outlined"
+                  theme={{ roundness: 20 }}
+                  style={{ height: 60, marginTop: '3%', marginTop: 20 }}
+                  outlineColor={theme.colors.secondary}
+                />
+                {errors.email && touched.email && (
+                  <Text style={{ color: 'red' }}>{errors.email}</Text>
+                )}
+
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginTop: '2%',
+                  }}></View>
+
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    marginVertical: "5%"
+                  }}>
+                  <GradientIconButton
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginHorizontal: 40,
+                      left: 20,
+                      borderWidth: 1,
+                      borderColor: '#555',
+                      width: 50,
+                      height: 50,
+                      borderRadius: 10,
+                      backgroundColor: 'transparent',
+                    }}>
+                    <TouchableOpacity style={{}}>
+                      <MaterialCommunityIcons
+                        name="facebook"
+                        size={24}
+                        color="#ffffff"
+                      />
+                    </TouchableOpacity>
+                  </GradientIconButton>
+
+
+
+                  <GradientIconButton
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginHorizontal: 10,
+                      borderWidth: 1,
+                      borderColor: '#555',
+                      width: 50,
+                      height: 50,
+                      left: 2,
+
+                      borderRadius: 10,
+                      backgroundColor: 'transparent',
+                    }}>
+                    <TouchableOpacity style={{}}>
+                      <MaterialCommunityIcons
+                        name="google"
+                        size={24}
+                        color="#ffffff"
+                      />
+                    </TouchableOpacity>
+                  </GradientIconButton>
+                  <GradientIconButton
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginHorizontal: 10,
+                      borderWidth: 1,
+                      borderColor: '#555',
+                      left: 10,
+
+                      width: 50,
+                      height: 50,
+                      borderRadius: 10,
+                      backgroundColor: 'transparent',
+                    }}>
+                    <TouchableOpacity style={{}}>
+                      <MaterialCommunityIcons
+                        name="apple"
+                        size={24}
+                        color="#ffffff"
+                      />
+                    </TouchableOpacity>
+                  </GradientIconButton>
+                </View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('SignUpwithEmail2')}>
+
+                  <GradientButton
+                    textStyle={{ color: '#fff', fontSize: 20, }}
+                    style={{
+                      padding: '2%',
+                      alignItems: 'center',
+                      // marginTop: 90,
+                      borderRadius: 20,
+                      marginTop: 10,
+                      width: '60%',
+                      // height: '25%',
+                      left: 65,
+                    }}
+                    text={'Next'}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+          </Formik>
+        </ScrollView>
+      </View>
+    </ScreenGradientBackground>
   );
 };
 

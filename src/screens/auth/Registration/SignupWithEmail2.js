@@ -22,6 +22,7 @@ import GradientButton from '../../../components/GradientButton';
 import GradientIconButton from '../../../components/GradientIconButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -128,13 +129,12 @@ const SignupWithEmail2 = () => {
   const theme = useTheme();
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      {/* <AuthAppbar title="Sign up today. Work tomorrow" /> */}
-      <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
+    <ScreenGradientBackground>
+        <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
+        <StatusBar barStyle={"light-content"} />
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: '5%', paddingBottom: '5%' }}
         showsVerticalScrollIndicator={false}>
-        <StatusBar barStyle="dark-content" />
 
         {/* <Text
           style={{
@@ -315,7 +315,7 @@ const SignupWithEmail2 = () => {
 
 
       </ScrollView>
-    </View>
+    </ScreenGradientBackground>
   );
 };
 

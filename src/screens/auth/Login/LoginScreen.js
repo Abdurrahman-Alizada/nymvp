@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   ScrollView,
-  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -24,8 +23,8 @@ import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GradientButton from '../../../components/GradientButton';
-import GradientText from '../../../components/GradientText';
 import SocialLogin from './SocialLogin';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -99,15 +98,15 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <AuthAppbar title={'Sign in'} />
-       <Text style={{textAlign:"center",marginTop:"10%",fontSize:18}}>Sign in</Text>
+    <ScreenGradientBackground>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           flex: 1,
-          paddingVertical: '2%',
         }}>
+        <AuthAppbar title={'Sign in'} />
+        <Text style={{ textAlign: "center", fontSize: 18 }}>Sign in</Text>
+
         <Portal>
           <Dialog visible={visible} onDismiss={() => setVisible(false)}>
             <Dialog.Title>Sign in</Dialog.Title>
@@ -153,14 +152,14 @@ const LoginScreen = ({ navigation }) => {
               style={{
                 flex: 1,
                 justifyContent: 'space-between',
-                marginTop: '10%',
+                marginTop: '5%',
                 paddingHorizontal: '5%',
               }}>
               <View>
                 <TextInput
                   placeholder={'Email address'}
                   mode="outlined"
-                  style={{ marginTop: '2%' }}
+                  style={{ marginTop: '1%' }}
                   value={values.email}
                   theme={{ roundness: 20 }}
                   onChangeText={handleChange('email')}
@@ -194,7 +193,7 @@ const LoginScreen = ({ navigation }) => {
                     />
                   }
                   mode="outlined"
-                  style={{ marginTop: '5%' }}
+                  style={{ marginTop: '3%' }}
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
                   value={values.password}
@@ -207,20 +206,20 @@ const LoginScreen = ({ navigation }) => {
                 ) : null}
 
                 <TouchableOpacity
-                  style={{ alignSelf: "flex-end",marginTop:"7%" }}
+                  style={{ alignSelf: "flex-end", marginTop: "5%" }}
                   onPress={() => navigation.navigate('ForgotPassword')}>
                   <Text
-                    style={{fontFamily:"AnekBangla-Regular", textDecorationLine:"underline", color: theme.colors.onBackground }}>
+                    style={{ fontFamily: "AnekBangla-Regular", textDecorationLine: "underline", color: theme.colors.onBackground }}>
                     {'Forgot password'}
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>navigation.replace("BottomTabs")}>
+                <TouchableOpacity onPress={() => navigation.replace("BottomTabs")}>
                   <GradientButton
                     textStyle={{ color: "#fff", letterSpacing: 3 }}
                     style={{
-                      fontFamily:"AnekBangla-Regular",
-                      padding: "7%", alignItems: "center", marginTop: 40, borderRadius: 20
+                      fontFamily: "AnekBangla-Regular",
+                      padding: "7%", alignItems: "center", marginTop: 30, borderRadius: 20
                     }}
                     text={"LOGIN"}
                   />
@@ -257,7 +256,7 @@ const LoginScreen = ({ navigation }) => {
           )}
         </Formik>
       </ScrollView>
-    </View>
+    </ScreenGradientBackground>
   );
 };
 

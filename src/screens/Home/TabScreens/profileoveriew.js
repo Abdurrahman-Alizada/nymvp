@@ -5,6 +5,7 @@ import { useTheme, Text, Card } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import Carousel from 'react-native-reanimated-carousel';
 import { width } from '../../../GlobalStyles';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const Profile = () => {
   const theme = useTheme();
@@ -62,10 +63,9 @@ const Profile = () => {
   ];
 
   return (
-    <View style={{ flex: 1, marginBottom: "20%", paddingTop: "5%", backgroundColor: "#1C1C1C" }}>
-      <StatusBar translucent={false} />
+    <ScreenGradientBackground>
+      <ScrollView contentContainerStyle={{ marginBottom:"5%"}}>
       <WorkoutsScreensAppbar isMain={true} title={"PROFILE OVERVIEW"} />
-      <ScrollView contentContainerStyle={{marginBottom:"5%"}}>
 
         <Text style={{ marginTop: "5%", textAlign: "center", fontSize: 18 }}>Choose your plan</Text>
         <Image
@@ -144,7 +144,7 @@ const Profile = () => {
         />
   
       </ScrollView>
-    </View>
+    </ScreenGradientBackground>
   );
 }
 

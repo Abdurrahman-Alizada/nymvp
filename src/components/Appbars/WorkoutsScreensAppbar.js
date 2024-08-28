@@ -7,8 +7,7 @@ const WorkoutsScreensAppbar = ({ isMain, title }) => {
   const navigation = useNavigation()
   const theme = useTheme()
   return (
-    <View style={{ flexDirection: "row",  alignItems: "flex-end", justifyContent: isMain ? "center" : "space-between", paddingHorizontal: "5%" }}>
-      <StatusBar backgroundColor={theme.colors.background} translucent={false} barStyle={"light-content"} />
+    <View style={{marginTop:"5%", flexDirection: "row",  alignItems: "flex-end", justifyContent: isMain ? "center" : "space-between", paddingHorizontal: "5%" }}>
       {!isMain &&
         <TouchableOpacity onPress={() => navigation.goBack()}>
 

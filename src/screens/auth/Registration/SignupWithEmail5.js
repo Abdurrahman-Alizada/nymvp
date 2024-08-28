@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
   StatusBar,
@@ -21,12 +21,13 @@ import {
   useRegisterUserMutation,
   useResendEmailForUserRegistrationMutation,
 } from '../../../redux/reducers/user/userThunk';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -55,8 +56,8 @@ const SignupWithEmail4 = () => {
 
   const emailRef = useRef('');
 
-  const [registerUser, {isLoading}] = useRegisterUserMutation();
-  const [resendEmailForUserRegistration, {isLoading: resendLoading}] =
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const [resendEmailForUserRegistration, { isLoading: resendLoading }] =
     useResendEmailForUserRegistrationMutation();
 
   const submitHandler = async (values, formikBag) => {
@@ -136,151 +137,153 @@ const SignupWithEmail4 = () => {
   const theme = useTheme();
 
   return (
-    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
-      <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
+    <ScreenGradientBackground>
 
-      <ScrollView
-        contentContainerStyle={styles.scrollViewContent}
-        showsVerticalScrollIndicator={false}>
-        <StatusBar barStyle="dark-content" />
+      <View style={{ flex: 1, }}>
+        <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
 
-        <Text style={styles.headerText}>CREATE PROFILE</Text>
-        <Text style={styles.subHeaderText}>Dietary Preferences.</Text>
+        <ScrollView
+          contentContainerStyle={styles.scrollViewContent}
+          showsVerticalScrollIndicator={false}>
+          <StatusBar barStyle="light-content" />
 
-        <Formik
-          innerRef={formikRef}
-          initialValues={{
-            email: '',
-            addressLine1: '',
-            addressLine2: '',
-            addressLine3: '',
-            postCode: '',
-            city: '',
-            firstName: '',
-            surName: '',
-          }}
-          validationSchema={validationSchema}
-          onSubmit={(values, {resetForm}) => {
-            submitHandler(values, {resetForm});
-          }}>
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-          }) => (
-            <View>
-              <Portal>
-                <Dialog visible={visible} onDismiss={() => setVisible(false)}>
-                  <Dialog.Title>Sign up</Dialog.Title>
-                  <Dialog.Content>
-                    <Paragraph>{message}</Paragraph>
-                  </Dialog.Content>
-                  <Dialog.Actions>
-                    {showTryAgainButton && (
+          <Text style={styles.headerText}>CREATE PROFILE</Text>
+          <Text style={styles.subHeaderText}>Dietary Preferences.</Text>
+
+          <Formik
+            innerRef={formikRef}
+            initialValues={{
+              email: '',
+              addressLine1: '',
+              addressLine2: '',
+              addressLine3: '',
+              postCode: '',
+              city: '',
+              firstName: '',
+              surName: '',
+            }}
+            validationSchema={validationSchema}
+            onSubmit={(values, { resetForm }) => {
+              submitHandler(values, { resetForm });
+            }}>
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              touched,
+            }) => (
+              <View>
+                <Portal>
+                  <Dialog visible={visible} onDismiss={() => setVisible(false)}>
+                    <Dialog.Title>Sign up</Dialog.Title>
+                    <Dialog.Content>
+                      <Paragraph>{message}</Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                      {showTryAgainButton && (
+                        <Button
+                          onPress={() => {
+                            setVisible(false);
+                            resendEmail();
+                          }}>
+                          Resend Email
+                        </Button>
+                      )}
+                      {showLoginButton && (
+                        <Button
+                          onPress={() => {
+                            setVisible(false);
+                            navigation.navigate('Login');
+                          }}>
+                          Go to login
+                        </Button>
+                      )}
                       <Button
                         onPress={() => {
                           setVisible(false);
-                          resendEmail();
+                          emailRef.current = '';
                         }}>
-                        Resend Email
+                        Close
                       </Button>
-                    )}
-                    {showLoginButton && (
-                      <Button
-                        onPress={() => {
-                          setVisible(false);
-                          navigation.navigate('Login');
-                        }}>
-                        Go to login
-                      </Button>
-                    )}
-                    <Button
-                      onPress={() => {
-                        setVisible(false);
-                        emailRef.current = '';
-                      }}>
-                      Close
-                    </Button>
-                  </Dialog.Actions>
-                </Dialog>
-              </Portal>
+                    </Dialog.Actions>
+                  </Dialog>
+                </Portal>
 
-              {workoutOptions.map((option, index) => (
-                
-                <TouchableRipple
- onPress={() => {
-                        setSelectedWorkoutOptions(prev => ({
-                          ...prev,
-                          [option.value]: !prev[option.value], // Toggle checkbox
-                        }));
-                      }}
+                {workoutOptions.map((option, index) => (
 
-                  key={index}
-                  rippleColor="rgba(255, 255, 255, .32)"
-                  style={styles.optionContainer}>
+                  <TouchableRipple
+                    onPress={() => {
+                      setSelectedWorkoutOptions(prev => ({
+                        ...prev,
+                        [option.value]: !prev[option.value], // Toggle checkbox
+                      }));
+                    }}
 
-                    
-                  <>
-                  
-                    <Text style={styles.optionText}>{option.label}</Text>
-                    <Checkbox
-                      status={
-                        selectedWorkoutOptions[option.value]
-                          ? 'checked'
-                          : 'unchecked'
-                      }
-                    
-                      color="lightgrey"
-                      uncheckedColor="lightgrey"
-                    />
-                  </>
-                </TouchableRipple>
-              ))}
-              <Checkbox.Item
-                label="I don’t want follow a diet."
-                color={'#839898'}
-                labelStyle={styles.label}
-                style={styles.checkboxItem}
-                position="leading"
-                status="checked"
-              />
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SignupWithEmail6')}
-                style={{
-                  alignItems: 'center',
-                  marginTop: 80,
-                }}></TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SignupWithEmail6')}
-                style={{alignItems: 'center', marginTop: 80}}>
-                <GradientButton
-                  textStyle={{color: '#fff', fontSize: 20, textAlign: 'center'}}
-                  style={{
-                    borderRadius: 20,
-                    width: '65%',
-                    height: 55,
-                    top: -120,
-                    justifyContent: 'center', // Centers the text vertically
-                  }}
-                  text={'Next'}
+                    key={index}
+                    style={styles.optionContainer}>
+
+
+                    <>
+
+                      <Text style={styles.optionText}>{option.label}</Text>
+                      <Checkbox
+                        status={
+                          selectedWorkoutOptions[option.value]
+                            ? 'checked'
+                            : 'unchecked'
+                        }
+
+                        color="lightgrey"
+                        uncheckedColor="lightgrey"
+                      />
+                    </>
+                  </TouchableRipple>
+                ))}
+                <Checkbox.Item
+                  label="I don’t want follow a diet."
+                  color={'#839898'}
+                  labelStyle={styles.label}
+                  style={styles.checkboxItem}
+                  position="leading"
+                  status="checked"
                 />
-              </TouchableOpacity>
-            </View>
-          )}
-        </Formik>
-      </ScrollView>
-    </View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('SignupWithEmail6')}
+                  style={{
+                    alignItems: 'center',
+                    marginTop: 80,
+                  }}></TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('SignupWithEmail6')}
+                  style={{ alignItems: 'center', marginTop: 80 }}>
+                  <GradientButton
+                    textStyle={{ color: '#fff', fontSize: 20, textAlign: 'center' }}
+                    style={{
+                      borderRadius: 20,
+                      width: '65%',
+                      height: 55,
+                      top: -120,
+                      justifyContent: 'center', // Centers the text vertically
+                    }}
+                    text={'Next'}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+          </Formik>
+        </ScrollView>
+      </View>
+    </ScreenGradientBackground>
   );
 };
 
 const workoutOptions = [
-  {label: 'Lazy Keto ', value: 'first'},
-  {label: 'Gluten Free', value: 'second'},
-  {label: 'Pescatarian ', value: 'third'},
-  {label: 'Vegan', value: 'fourth'},
+  { label: 'Lazy Keto ', value: 'first' },
+  { label: 'Gluten Free', value: 'second' },
+  { label: 'Pescatarian ', value: 'third' },
+  { label: 'Vegan', value: 'fourth' },
 ];
 
 const styles = StyleSheet.create({
@@ -305,13 +308,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor:
-    // "black",
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: '#989898',
-    padding: 15,
+    backgroundColor: '#222',
+    borderRadius: 10,
+    padding: 16,
     marginVertical: 8,
+    shadowColor: '#fff',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+
   },
   optionText: {
     color: '#989898',
