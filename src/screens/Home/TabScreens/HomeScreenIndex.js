@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { Card, useTheme } from 'react-native-paper';
+import { View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Card, Text, useTheme } from 'react-native-paper';
 import Carousel from 'react-native-reanimated-carousel';
 import { width } from '../../../GlobalStyles'; // Assuming this provides the screen width
 
-const HomeScreenIndex = () => {
+const HomeScreenIndex = ({ navigation }) => {
   const [isFast, setIsFast] = useState(false);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [isPagingEnabled, setIsPagingEnabled] = useState(true);
@@ -17,7 +17,7 @@ const HomeScreenIndex = () => {
     { day: 'WED', date: '15' },
     { day: 'THU', date: '16' },
     { day: 'FRI', date: '17' },
-    { day: 'SAT', date: '18' },
+    // { day: 'SAT', date: '18' },
   ];
 
   const workoutData = [
@@ -81,8 +81,8 @@ const HomeScreenIndex = () => {
     <ScrollView
       style={{
         flex: 1,
-        backgroundColor: 'black',
-        paddingBottom: '25%',
+        // backgroundColor: 'black',
+        paddingBottom: '20%',
       }}>
       {/* Logo Section */}
       <View style={{ width: '100%' }}>
@@ -105,7 +105,7 @@ const HomeScreenIndex = () => {
           justifyContent: 'space-between',
           paddingHorizontal: '5%',
           width: '100%',
-          marginTop: 20,
+          marginTop: 10,
         }}>
         <View>
           <Text style={{ color: '#aaa' }}>Good Morning</Text>
@@ -144,7 +144,7 @@ const HomeScreenIndex = () => {
             backgroundColor: '#333',
             borderRadius: 20,
             padding: 10,
-            marginTop: 10,
+            marginTop: 2,
           }}
           contentStyle={{
             flexDirection: 'row',
@@ -156,16 +156,16 @@ const HomeScreenIndex = () => {
               style={{
                 backgroundColor: index === 2 ? '#5EC8D8' : '#000',
                 borderRadius: 25,
-                width: 50,
+                width: "14%",
                 height: 60,
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginHorizontal: 5,
+                marginRight: 4,
               }}>
               <Text style={{ color: 'white', fontSize: 12, fontWeight: '400' }}>
                 {item.day}
               </Text>
-              <Text style={{ color: 'white', fontSize: 18, fontWeight: '600' }}>
+              <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>
                 {item.date}
               </Text>
             </TouchableOpacity>
@@ -173,7 +173,13 @@ const HomeScreenIndex = () => {
         </Card>
       </View>
       {/* Meals Carousel */}
-      <View style={{ backgroundColor: theme.colors.cardBackground, borderRadius: 10,padding:10, margin: 20, height: CAROUSEL_HEIGHT, alignItems: "center", position: 'relative' }}>
+      <View style={{
+        shadowColor: '#fff',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        backgroundColor: theme.colors.cardBackground, borderRadius: 10, padding: 10, margin: 20, height: CAROUSEL_HEIGHT, alignItems: "center", position: 'relative'
+      }}>
 
         <Carousel
           loop
@@ -186,13 +192,13 @@ const HomeScreenIndex = () => {
           pagingEnabled={isPagingEnabled}
           ref={carouselRef}
           renderItem={({ item }) => (
-            <View style={{ borderRadius: 10, overflow: 'hidden' }}>
+            <TouchableOpacity onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "Recipe" } })} style={{ borderRadius: 10, overflow: 'hidden' }}>
               <Image
                 source={item.image}
                 style={{ width: '100%', height: '85%', resizeMode: "contain" }}
               />
-              <Text style={{marginTop:1, color: "#fff", fontSize: 18, textAlign: "center" }}>{item.text}</Text>
-            </View>
+              <Text style={{ marginTop: 1, color: "#fff", fontSize: 14, fontWeight: "800", textAlign: "center" }}>{item.text}</Text>
+            </TouchableOpacity>
           )}
         />
         {/* Left Navigation Button */}
@@ -234,7 +240,7 @@ const HomeScreenIndex = () => {
             fontSize: 20,
             fontWeight: '600',
             color: 'white',
-            marginBottom: 10,
+            marginBottom: 2,
           }}>
           WORKOUTS
         </Text>
@@ -245,7 +251,12 @@ const HomeScreenIndex = () => {
             backgroundColor: '#333',
             // borderRadius: 20,
             padding: 10,
-            marginTop: 10,
+            marginTop: 5,
+            shadowColor: '#fff',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
           }}
         >
 

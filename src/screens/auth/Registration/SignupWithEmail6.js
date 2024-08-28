@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
   StatusBar,
@@ -19,12 +19,13 @@ import {
   useRegisterUserMutation,
   useResendEmailForUserRegistrationMutation,
 } from '../../../redux/reducers/user/userThunk';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
 import { Checkbox } from 'react-native-paper';
+import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 
 
 const validationSchema = Yup.object().shape({
@@ -53,8 +54,8 @@ const SignupWithEmail4 = () => {
 
   const emailRef = useRef('');
 
-  const [registerUser, {isLoading}] = useRegisterUserMutation();
-  const [resendEmailForUserRegistration, {isLoading: resendLoading}] =
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const [resendEmailForUserRegistration, { isLoading: resendLoading }] =
     useResendEmailForUserRegistrationMutation();
 
   const submitHandler = async (values, formikBag) => {
@@ -131,8 +132,8 @@ const SignupWithEmail4 = () => {
   const theme = useTheme();
 
   return (
-    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
-      <AuthAppbar title="Sign up today. Work tomorrow" />
+    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+      <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
 
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
@@ -155,8 +156,8 @@ const SignupWithEmail4 = () => {
             surName: '',
           }}
           validationSchema={validationSchema}
-          onSubmit={(values, {resetForm}) => {
-            submitHandler(values, {resetForm});
+          onSubmit={(values, { resetForm }) => {
+            submitHandler(values, { resetForm });
           }}>
           {({
             handleChange,
@@ -202,51 +203,52 @@ const SignupWithEmail4 = () => {
                   </Dialog.Actions>
                 </Dialog>
               </Portal>
-              <Text style={{top: 25}}>Ingredients:</Text>
+              <Text style={{ top: 25 }}>Ingredients:</Text>
               <TextInput
                 placeholder="Fish, Beans, ........."
                 onChangeText={handleChange('firstOption')}
                 value={values.firstOption}
                 mode="outlined"
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: '9%'}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: '9%' }}
                 outlineColor={theme.colors.secondary}
               />
-             
-              <Text style={{top: 25}}>Meals/courses:</Text>
 
-             
+              <Text style={{ top: 25 }}>Meals/courses:</Text>
+
+
               <TextInput
                 placeholder="Fish & chips, pizza, ........."
                 onChangeText={handleChange('firstOption')}
                 value={values.firstOption}
                 mode="outlined"
-                theme={{roundness: 20}}
-                style={{height: 60, marginTop: '9%'}}
+                theme={{ roundness: 20 }}
+                style={{ height: 60, marginTop: '9%' }}
                 outlineColor={theme.colors.secondary}
               />
-              <Text style={{top: 10,color:"grey"}}>
+              <Text style={{ top: 10, color: "grey" }}>
                 OBS: When writing foods to avoid (due to allergies or such),
                 make sure to put a comma after every one. Like the example
                 above.{' '}
               </Text>
               <Checkbox.Item label="I don’t have anything to avoid"
-             color={"#839898"}
-             labelStyle={styles.label}
-             style={styles.checkboxItem}
-              position="leading"
-              status="checked" />
+                color={"#839898"}
+                labelStyle={styles.label}
+                style={styles.checkboxItem}
+                position="leading"
+                status="checked" />
               <TouchableOpacity
-                onPress={() => navigation.navigate('BottomTabs')}
-                style={{alignItems: 'center', marginTop: 80}}>
+                // onPress={() => navigation.navigate('BottomTabs')}
+                onPress={() => navigation.navigate({name:"HomeStack",params:{screen:'TermsAndConditions'}})}
+                style={{ alignItems: 'center', marginTop: 40 }}>
                 <GradientButton
-                  textStyle={{color: '#fff', fontSize: 20, textAlign: 'center'}}
+                  textStyle={{ color: '#fff', fontSize: 20, textAlign: 'center' }}
                   style={{
                     borderRadius: 20,
                     width: '65%',
                     height: 55,
                     justifyContent: 'center',
-                    top:50, // Centers the text vertically
+                    top: 50, // Centers the text vertically
                   }}
                   text={'Next'}
                 />
@@ -281,19 +283,19 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     backgroundColor: 'transparent',
     borderRadius: 20,
-    color:"grey",
+    color: "grey",
   },
   label: {
     // color: '#FFFFFF', 
-    fontSize: 17, 
-    left:-40,
-    top:6,
+    fontSize: 17,
+    left: -40,
+    top: 6,
   },
   checkboxItem: {
 
-    top:20,
-    right:20,
-  
+    top: 20,
+    right: 20,
+
   },
 });
 

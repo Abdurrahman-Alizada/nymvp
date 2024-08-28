@@ -20,6 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
+import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -128,7 +129,7 @@ const SignupWithEmail4 = () => {
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <AuthAppbar title="Sign up today. Work tomorrow" />
+     <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
 
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
@@ -199,7 +200,7 @@ const SignupWithEmail4 = () => {
                 </Dialog>
               </Portal>
 
-           
+
               {workoutOptions.map((option, index) => (
                 <TouchableRipple
                   key={index}
@@ -223,22 +224,22 @@ const SignupWithEmail4 = () => {
                 </TouchableRipple>
               ))}
 
-             
-<TouchableOpacity
-  onPress={() => navigation.navigate('SignupWithEmail5')}
-  style={{ alignItems: 'center', marginTop: 80 }}
->
-  <GradientButton
-    textStyle={{ color: '#fff', fontSize: 20,textAlign:"center" }}
-    style={{
-      borderRadius: 20,
-      width: '65%',
-      height: 55,
-      justifyContent: 'center', 
-    }}
-    text={'Next'}
-  />
-</TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SignupWithEmail5')}
+                style={{ alignItems: 'center', marginTop: 40 }}
+              >
+                <GradientButton
+                  textStyle={{ color: '#fff', fontSize: 20, textAlign: "center" }}
+                  style={{
+                    borderRadius: 20,
+                    width: '65%',
+                    height: 55,
+                    justifyContent: 'center',
+                  }}
+                  text={'Next'}
+                />
+              </TouchableOpacity>
             </View>
           )}
         </Formik>
@@ -284,8 +285,8 @@ const styles = StyleSheet.create({
     borderColor: 'grey', // Change to your preferred border color
     padding: 10,
     marginVertical: 8,
-    
-},
+
+  },
 
   selectedOption: {
     // backgroundColor: '#050505',
@@ -302,14 +303,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     fontWeight: '600',
-    textAlign:"center",
-    top:10,
+    textAlign: "center",
+    top: 10,
   },
   submitButton: {
     width: 250,
     borderRadius: 20,
     height: 50,
-    top:10,
+    top: 10,
   },
 });
 

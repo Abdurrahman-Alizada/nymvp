@@ -132,7 +132,7 @@ const SignupWithEmail = () => {
   const theme = useTheme();
 
   return (
-    <View style={{ flex: 1, paddingTop: "10%", backgroundColor: theme.colors.background }}>
+    <View style={{ flex: 1, paddingTop: "7%", backgroundColor: theme.colors.background }}>
       <StatusBar barStyle="light-content" />
       <WorkoutsScreensAppbar isMain={true} title={"CREATE PROFILE"} />
       <ScrollView
@@ -200,13 +200,9 @@ const SignupWithEmail = () => {
                 </Dialog>
               </Portal>
 
-              <Text style={{ fontSize: 18, marginVertical: '5%', textAlign: "center", fontWeight: '700' }}>
-              CREATE PROFILE
-              </Text>
-              <Text style={{ fontSize: 18, marginVertical: '2%', textAlign: "center",  }}>
+              <Text style={{color:"#767676", fontSize: 18, marginVertical: '2%', textAlign: "center",  }}>
               Register Information
               </Text>
-              <Text style={{ fontWeight: '800', marginBottom: '2%' }}>Email</Text>
               <TextInput
                 placeholder="Email address"
                 onChangeText={handleChange('email')}
@@ -376,15 +372,15 @@ const SignupWithEmail = () => {
                 onPress={() => navigation.navigate('SignUpwithEmail2')}>
 
                 <GradientButton
-                  textStyle={{ color: '#fff', fontSize: 20, top: 10 }}
+                  textStyle={{ color: '#fff', fontSize: 20, }}
                   style={{
-                    //padding: '5%',
+                    padding: '2%',
                     alignItems: 'center',
                     // marginTop: 90,
                     borderRadius: 20,
-                    top: 10,
+                    marginTop: 10,
                     width: '60%',
-                    height: '25%',
+                    // height: '25%',
                     left: 65,
                   }}
                   text={'Next'}

@@ -11,7 +11,7 @@ const SocialLogin = () => {
         <View style={{ alignItems: 'center', marginVertical: "20%" }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%' }}>
                 <Divider style={{ flex: 1, height: 1, backgroundColor: '#888' }} />
-                <Text style={{ marginHorizontal: 10, color: '#888' }}>or Log in with</Text>
+                <Text style={{fontFamily:"AnekBangla-Regular", marginHorizontal: 10, color: '#888' }}>or Log in with</Text>
                 <Divider style={{ flex: 1, height: 1, backgroundColor: '#888' }} />
             </View>
 

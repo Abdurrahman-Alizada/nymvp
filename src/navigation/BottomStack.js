@@ -13,6 +13,7 @@ import Workouts from '../screens/Home/TabScreens/Workouts';
 import HistorScreen from '../screens/Home/TabScreens/History';
 import ActiveWorkoutScreen from '../screens/Home/TabScreens/ActiveWorkouts';
 import Profile from '../screens/Home/TabScreens/Profile';
+import ProfileOverview from '../screens/Home/TabScreens/profileoveriew';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -119,7 +120,7 @@ export default function BottomTabsStack() {
       />
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileOverview}
         options={{
           tabBarLabel: '',
           tabBarIcon: ({ color }) => (

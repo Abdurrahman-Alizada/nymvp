@@ -113,6 +113,7 @@ export default function WorkoutScreen() {
                             <View key={set.id} style={styles.setRow}>
                                 <Text style={styles.subTask}>{set.name}</Text>
                                 <Checkbox
+                                color='#fff'
                                     status={checkedSets[exercise.id]?.[set.id] ? 'checked' : 'unchecked'}
                                 />
                             </View>
@@ -157,7 +158,8 @@ export default function WorkoutScreen() {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingVertical:40,
         backgroundColor: '#121212',
         flexGrow: 1,
     },
@@ -166,11 +168,17 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 10,
         backgroundColor: '#1F1F1F',
+        shadowColor: '#fff',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+    
     },
     exerciseRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+  
     },
     exerciseName: {
         fontSize: 18,

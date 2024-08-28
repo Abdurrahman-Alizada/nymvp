@@ -39,7 +39,7 @@ const SplashScreen = ({ navigation }) => {
         const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
         let screenTo = "Onboarding";
 
-        if (isAppFirstLaunched.current) {
+        if (!isAppFirstLaunched.current) {
           screenTo = { name: "Onboarding" };
         } else if (!isLoggedIn) {
           screenTo = { name: "WelcomeScreen" };
@@ -113,10 +113,10 @@ const SplashScreen = ({ navigation }) => {
           alignItems: 'center',
         }}
       >
-        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla' }}>
+        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla-Regular' }}>
           WELCOME TO
         </Text>
-        <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak-Regular' }}>
+        <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak' }}>
           PREFORMLY
         </Text>
         <Animated.Image

@@ -12,7 +12,13 @@ const WorkoutsScreen = ({ }) => {
             <WorkoutsScreensAppbar isMain={true} title="Workouts" />
             <ScrollView style={{ flex: 1, padding: 10, backgroundColor: '#121212' }}>
                 {/* Card 1 */}
-                <Card onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "Meditatoin" } })} style={{ marginBottom: 15, backgroundColor: '#1C1C1C', borderRadius: 10 }}>
+                <Card onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "Meditatoin" } })} style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    marginBottom: 15, backgroundColor: '#1C1C1C', borderRadius: 10
+                }}>
                     <Card.Content>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
@@ -55,7 +61,18 @@ const WorkoutsScreen = ({ }) => {
                 </Card>
 
                 {/* Card 2 */}
-                <Card onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "Cardio" } })} style={{ marginBottom: 15, backgroundColor: '#1C1C1C', borderRadius: 10 }}>
+                <Card onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "Cardio" } })} style={{
+                    marginBottom: 15,
+                    // iOS shadow properties
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+
+                    // Android elevation property
+                    elevation: 2,
+                    backgroundColor: '#1C1C1C', borderRadius: 10
+                }}>
                     <Card.Content>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <View style={{ flexDirection: "row", alignItems: "flex-start" }}>

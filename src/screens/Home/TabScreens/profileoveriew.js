@@ -1,147 +1,151 @@
+import { View, StatusBar, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
+import { useTheme, Text, Card } from 'react-native-paper';
+import LinearGradient from 'react-native-linear-gradient';
+import Carousel from 'react-native-reanimated-carousel';
+import { width } from '../../../GlobalStyles';
 
-const ProfileOverview = () => {
+const Profile = () => {
+  const theme = useTheme();
+  
+  const plans = [
+    {
+      title: 'Personal',
+      price: '$9.99 monthly',
+      features: [
+        'Unlimited monthly meal generations',
+        'Auto-generation',
+        'Recipes by email',
+        'Access to members area',
+        'Profile overview',
+        'Monthly overview',
+        'On-website-recipes',
+        'Cooking instructions',
+        'Advanced profile',
+        'Choose mission/goal',
+      ],
+    },
+    {
+      title: 'Team',
+      price: '$19.99 monthly',
+      features: [
+        'Unlimited monthly meal generations',
+        'Auto-generation',
+        'Recipes by email',
+        'Access to members area',
+        'Profile overview',
+        'Monthly overview',
+        'On-website-recipes',
+        'Cooking instructions',
+        'Advanced profile',
+        'Choose mission/goal',
+      ],
+    },
+    {
+      title: 'Family',
+      price: '$29.99 monthly',
+      features: [
+        'Unlimited monthly meal generations',
+        'Auto-generation',
+        'Recipes by email',
+        'Access to members area',
+        'Profile overview',
+        'Monthly overview',
+        'On-website-recipes',
+        'Cooking instructions',
+        'Advanced profile',
+        'Choose mission/goal',
+      ],
+    },
+    // Add more plans here if needed
+  ];
+
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'black',
-        padding: 20,
-        justifyContent: 'center',
-      }}>
-      <View style={{justifyContent: 'center', width: '100%'}}>
-        <Image
-          source={require('../../../assets/logob.png')}
-          style={{
-            height: '20%',
-            width: '60%',
-            resizeMode: 'center',
-            alignSelf: 'center',
-            marginTop: -55,
-          }}
-        />
-      </View>
-      <View style={{marginTop: -60}}>
-        <Text
-          style={{
-            fontSize: 18,
-            fontWeight: '500',
-            textAlign: 'center',
-            color: 'white',
-            margin: 20,
-          }}>
-          PROFILE OVERVIEW
-        </Text>
-        <Text
-          style={{
-            fontSize: 18,
-            fontWeight: '400',
-            textAlign: 'center',
-            color: 'white',
-            marginTop: -10,
-          }}>
-          CHOOSE YOUR PLAN
-        </Text>
-      </View>
+    <View style={{ flex: 1, marginBottom: "20%", paddingTop: "5%", backgroundColor: "#1C1C1C" }}>
+      <StatusBar translucent={false} />
+      <WorkoutsScreensAppbar isMain={true} title={"PROFILE OVERVIEW"} />
+      <ScrollView contentContainerStyle={{marginBottom:"5%"}}>
 
-      <View style={{alignItems: 'center', marginBottom: 20}}>
+        <Text style={{ marginTop: "5%", textAlign: "center", fontSize: 18 }}>Choose your plan</Text>
         <Image
-          source={require('../../../assets/profilepicgrl.png')}
           style={{
-            width: 70,
-            height: 70,
+            width: 100,
+            height: 100,
+            marginRight: 5,
+            resizeMode: "contain",
+            alignSelf: "center",
+            marginTop: 14,
             borderRadius: 50,
-            borderWidth: 2,
-            borderColor: '#3498db',
           }}
+          source={require('../../../assets/avatar.png')}
         />
-        <Text
-          style={{
-            fontSize: 20,
-            marginTop: 10,
-            fontWeight: 'bold',
-            color: 'white', // Changed from '#333' to 'white' for better contrast
-          }}>
-          Sven-Ingvar
-        </Text>
-      </View>
+        <Text style={{
+          textAlign: "center",
+          marginTop: 10,
+          fontSize: 16,
+          color: "#D0D0D0",
+          fontFamily: "FuzzyBubble-Regular"
+        }}>sven-ingvar</Text>
 
-      <View
-        style={{
-          borderWidth: 1,
-          borderColor: '#ccc',
-          padding: 15,
-          borderRadius: 10,
-          backgroundColor: '#1E1E1E', // Slightly lighter black for the card background
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 1},
-          shadowOpacity: 0.2,
-          shadowRadius: 1.5,
-          marginBottom: 20,
-          width: '100%',
-        }}>
-        <View 
-          style={{
-            backgroundColor: '#C5D7D7', 
-            paddingVertical: 10, 
-            paddingHorizontal: 15,
-            alignItems: 'center',
-            borderRadius: 15,
-            marginBottom: 10,
-            width: '80%', // Adjusted width for better proportion
-            alignSelf: 'center', // Center the box horizontally
-          }}
-        >
-          <Text style={{fontSize: 22, fontWeight: 'bold', color: '#000'}}>
-            Personal
-          </Text>
-          <Text style={{fontSize: 18, color: '#000'}}>
-            $9.99 monthly
-          </Text>
-        </View>
-        <View style={{marginTop: 10}}>
-          {[
-            'Unlimited monthly meal generations',
-            'Auto-generation',
-            'Recipes by email',
-            'Access to members area',
-            'Profile overview',
-            'On-website recipes',
-            'Monthly overview',
-            'Cooking instructions',
-            'Advanced profile',
-            'Choose mission/goal',
-          ].map((perk, index) => (
-            <Text
-              key={index}
-              style={{fontSize: 14, marginBottom: 5, color: '#ccc'}}>
-              {perk}
-            </Text>
-          ))}
-        </View>
-      </View>
+        <Carousel
+          width={width}
+          height={500}
+          data={plans}
+          style={{marginBottom:"15%"}}
+          scrollAnimationDuration={1000}
+          renderItem={({ item }) => (
+            <View style={{marginBottom:"5%"}}>
+              <Image
+                source={require('../../../assets/diamods.png')}
+                style={{
+                  width: 50,
+                  height: 50,
+                  marginTop: 20,
+                  alignSelf: "center",
+                  marginBottom: -40,
+                  zIndex: 999
+                }}
+                resizeMode="contain"
+              />
+              <Card style={{
+                marginHorizontal: 20,
+                marginTop: 20,
+                backgroundColor: "#1C1C1C",
+                shadowColor: '#fff',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+              }}>
 
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#C5D7D7',
-          paddingVertical: 15,
-          borderRadius: 15,
-          width: '70%',
-          alignItems: 'center',
-          marginTop: -30, // Slightly reduced margin to better align with other elements
-          height: 50, // Adjusted height for a more button-like appearance
-          alignSelf: 'center',
-        }}
-        onPress={() => {
-          // Handle navigation or action here
-        }}>
-        <Text style={{color: '#000', fontSize: 18, fontWeight: 'bold'}}>
-          Get Started
-        </Text>
-      </TouchableOpacity>
+                <LinearGradient colors={['#C5D7D7', '#839898']}
+                  style={{ borderTopRightRadius: 20, borderTopLeftRadius: 20, }}
+                  start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}>
+
+                  <View style={{
+                    alignItems: 'center',
+                    borderRadius: 10,
+                    padding: 10,
+                    marginBottom: 15,
+                  }}>
+                    <Text style={{ fontSize: 24, marginTop: 8, color: "#FFFFFF", fontWeight: "bold" }}>{item.title}</Text>
+                    <Text style={{ fontSize: 16, color: "#FFFFFF", }}>{item.price}</Text>
+                  </View>
+                </LinearGradient>
+
+                <Text style={{ padding: "5%",marginTop:5, color: "#FFFFFF", fontSize: 14, lineHeight: 23 }}>
+                  {item.features.map((feature, index) => (
+                    <Text key={index}>• {feature}{"\n"}</Text>
+                  ))}
+                </Text>
+              </Card>
+            </View>
+          )}
+        />
+  
+      </ScrollView>
     </View>
   );
-};
+}
 
-export default ProfileOverview;
+export default Profile;

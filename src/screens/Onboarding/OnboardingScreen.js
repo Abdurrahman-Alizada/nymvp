@@ -30,7 +30,7 @@ const Onboarding = () => {
         <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla' }}>
           WELCOME TO
         </Text>
-        <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak-Regular' }}>
+        <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak' }}>
           PREFORMLY
         </Text>
         <TouchableOpacity onPress={()=>navigation.navigate("WelcomeScreen")} style={{width:"60%", padding: 12, alignItems:"center",marginTop:10, backgroundColor:theme.colors.primary, borderRadius:10}}>

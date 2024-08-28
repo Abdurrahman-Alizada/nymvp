@@ -101,7 +101,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <AuthAppbar title={'Sign in'} />
-
+       <Text style={{textAlign:"center",marginTop:"10%",fontSize:18}}>Sign in</Text>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -207,10 +207,10 @@ const LoginScreen = ({ navigation }) => {
                 ) : null}
 
                 <TouchableOpacity
-                  style={{ alignSelf: "flex-end",marginTop:"5%" }}
+                  style={{ alignSelf: "flex-end",marginTop:"7%" }}
                   onPress={() => navigation.navigate('ForgotPassword')}>
                   <Text
-                    style={{ textDecorationLine:"underline", color: theme.colors.onBackground }}>
+                    style={{fontFamily:"AnekBangla-Regular", textDecorationLine:"underline", color: theme.colors.onBackground }}>
                     {'Forgot password'}
                   </Text>
                 </TouchableOpacity>
@@ -219,7 +219,8 @@ const LoginScreen = ({ navigation }) => {
                   <GradientButton
                     textStyle={{ color: "#fff", letterSpacing: 3 }}
                     style={{
-                      padding: "5%", alignItems: "center", marginTop: 40, borderRadius: 20
+                      fontFamily:"AnekBangla-Regular",
+                      padding: "7%", alignItems: "center", marginTop: 40, borderRadius: 20
                     }}
                     text={"LOGIN"}
                   />
