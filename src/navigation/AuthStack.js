@@ -35,14 +35,12 @@ const AuthStack = () => {
         component={LoginScreen}
         options={{
           headerShown: false,
-          presentation: 'modal',
         }}
       />
 
       <Stack.Screen
         name="SignUpwithEmail"
         options={{
-          presentation: 'modal',
           headerShown: false,
           title: 'Sign up with email',
         }}
@@ -51,7 +49,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="SignUpwithEmail2"
         options={{
-          presentation: 'modal',
           headerShown: false,
           title: 'Sign up with email',
         }}
@@ -60,7 +57,6 @@ const AuthStack = () => {
       <Stack.Screen
       name="SignUpwithEmail3"
       options={{
-        presentation: 'modal',
         headerShown: false,
         title: 'Sign up with email',
       }}
@@ -69,7 +65,6 @@ const AuthStack = () => {
     <Stack.Screen
       name="SignupWithEmail4"
       options={{
-        presentation: 'modal',
         headerShown: false,
         title: 'Sign up with email',
       }}
@@ -78,7 +73,6 @@ const AuthStack = () => {
  <Stack.Screen
       name="SignupWithEmail5"
       options={{
-        presentation: 'modal',
         headerShown: false,
         title: 'Sign up with email',
       }}
@@ -87,7 +81,6 @@ const AuthStack = () => {
     <Stack.Screen
       name="SignupWithEmail6"
       options={{
-        presentation: 'modal',
         headerShown: false,
         title: 'Sign up with email',
       }}
@@ -96,7 +89,6 @@ const AuthStack = () => {
     {/* <Stack.Screen
       name="Recipe"
       options={{
-        presentation: 'modal',
         headerShown: false,
         title: 'Sign up with email',
       }}
@@ -106,7 +98,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="FreeflexerCreatePassword"
         options={{
-          presentation: 'modal',
           headerShown: false,
         }}
         component={FreeflexerCreatePassword}
@@ -115,7 +106,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="CreatePhoneNumber"
         options={{
-          presentation: 'modal',
           headerShown: false,
         }}
         component={CreatePhoneNumber}
@@ -124,7 +114,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="FreeflexerTermsAndCondition"
         options={{
-          presentation: 'modal',
           headerShown: false,
         }}
         component={FreeflexerTermsAndCondition}
@@ -135,7 +124,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="SearchAddress"
         options={{
-          presentation: 'modal',
           headerShown: false,
         }}
         component={SearchAddress}
@@ -144,7 +132,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="ContractorSignUpwithEmail"
         options={{
-          presentation: 'modal',
           headerShown: false,
         }}
         component={ContractorSignupWithEmail}

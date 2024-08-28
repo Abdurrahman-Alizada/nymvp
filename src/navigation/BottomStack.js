@@ -27,15 +27,18 @@ export default function BottomTabsStack() {
       inactiveColor="#888888"
       shifting={false} // Keep the icons the same size
       barStyle={{
-        backgroundColor: '#000000', // Background color of the tab bar
-        // borderTopLeftRadius: 20, // Rounded corners on top left and right
-        // borderTopRightRadius: 20,
-        overflow: 'hidden', // Ensure the background doesn't overflow the corners
-        position: 'absolute', // Keep it floating above the screen content
-        bottom: 0, // Adjust the positioning at the bottom
+        backgroundColor: '#000000',
+        position: 'absolute',
+        bottom: 0,
         left: 0,
         right: 0,
-        height: 70, // Increase height to match your design
+        height: 70,
+        elevation: 10, // For Android shadow
+        shadowColor: '#fff', // White shadow color
+        shadowOffset: { width: 0, height: -10 }, // Move shadow above
+        shadowOpacity: 0.3, // Increase opacity for visibility
+        shadowRadius: 10, // Blur the shadow for a soft effect
+        overflow: 'hidden',
       }}
     >
       <Tab.Screen
@@ -48,7 +51,7 @@ export default function BottomTabsStack() {
           ),
         }}
       />
-       {/* <Tab.Screen
+      {/* <Tab.Screen
         name="Recipe"
         component={Recipe}
         options={{
@@ -68,7 +71,7 @@ export default function BottomTabsStack() {
           ),
         }}
       /> */}
-       {/* <Tab.Screen
+      {/* <Tab.Screen
         name="grocerylist"
         component={grocerylist}
         options={{
@@ -78,7 +81,7 @@ export default function BottomTabsStack() {
           ),
         }}
       /> */}
-       {/* <Tab.Screen
+      {/* <Tab.Screen
         name="profileoveriew"
         component={profileoveriew}
         options={{

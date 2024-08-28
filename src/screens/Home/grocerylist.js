@@ -8,6 +8,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import WorkoutsScreensAppbar from '../../components/Appbars/WorkoutsScreensAppbar';
 import GradientButton from '../../components/GradientButton';
+import ScreenGradientBackground from '../../components/ScreenGradientBackground';
 
 export default function GroceryList({ navigation }) {
   const [checkedItems, setCheckedItems] = useState({});
@@ -39,8 +40,9 @@ export default function GroceryList({ navigation }) {
   }, []);
 
   return (
+    <ScreenGradientBackground>
     <BottomSheetModalProvider>
-      <View style={{ flex: 1, backgroundColor: 'black', paddingTop: "10%" }}>
+      <View style={{ flex: 1, paddingTop: "10%" }}>
         <WorkoutsScreensAppbar isMain={false} title={"Grocery LIST"} />
         <ScrollView contentContainerStyle={{ padding: 20 }}>
           <View style={{ borderColor: "#A7A7A7", borderWidth: 2, paddingHorizontal: "3%", paddingBottom: "15%", paddingTop: "3%", borderRadius: 20 }}>
@@ -150,6 +152,7 @@ export default function GroceryList({ navigation }) {
         </BottomSheetModal>
       </View>
     </BottomSheetModalProvider>
+    </ScreenGradientBackground>
   );
 }
 

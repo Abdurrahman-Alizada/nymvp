@@ -21,6 +21,7 @@ import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -128,13 +129,12 @@ const SignupWithEmail4 = () => {
   const theme = useTheme();
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-     <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
-
+    <ScreenGradientBackground>
+      <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
 
         <Text style={styles.headerText}>CREATE PROFILE</Text>
         <Text style={styles.subHeaderText}>Tell us about your goals.</Text>
@@ -205,7 +205,6 @@ const SignupWithEmail4 = () => {
                 <TouchableRipple
                   key={index}
                   onPress={() => setWorkoutFrequency(option.value)}
-                  rippleColor="rgba(255, 255, 255, .32)"
                   style={[
                     styles.optionContainer,
                     workoutFrequency === option.value && styles.selectedOption,
@@ -244,7 +243,7 @@ const SignupWithEmail4 = () => {
           )}
         </Formik>
       </ScrollView>
-    </View>
+    </ScreenGradientBackground>
   );
 };
 
@@ -279,13 +278,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: 'black',
-    borderRadius: 20,
-    borderWidth: 2, // Adjust thickness here
-    borderColor: 'grey', // Change to your preferred border color
-    padding: 10,
+    backgroundColor: '#222',
+    borderRadius: 10,
+    padding: 16,
     marginVertical: 8,
-
+    shadowColor: '#fff',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
   },
 
   selectedOption: {

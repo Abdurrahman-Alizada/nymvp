@@ -4,6 +4,7 @@ import { Image, StatusBar, TouchableOpacity, View } from 'react-native';
 import { useContext } from 'react';
 import { ThemeContext } from '../../themeContext';
 import { useSelector } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function AuthAbbar({ title }) {
   const navigation = useNavigation();
@@ -12,15 +13,16 @@ export default function AuthAbbar({ title }) {
   const { toggleTheme, isThemeDark } = useContext(ThemeContext);
 
   return (
-    <Appbar.Header style={{backgroundColor:theme.colors.background}}>
+    <LinearGradient
+      colors={['#1D1D1D', '#050505']}
+      start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}>
+
       <StatusBar
-        barStyle={isThemeDark ? 'light-content' : 'dark-content'}
-        backgroundColor={theme.colors.background}
+        barStyle={'light-content'}
       />
       <View
         style={{
           flexDirection: 'row',
-          backgroundColor: theme.colors.background,
           justifyContent: 'space-between',
           alignItems: "center"
         }}>
@@ -45,8 +47,8 @@ export default function AuthAbbar({ title }) {
             source={require('../../assets/logob.png')}
           />
         </View>
-
-        <View style={{ width: "31%", flexDirection: 'row', alignItems: "center", justifyContent: "flex-end" }}>
+        <View style={{ width: "31%", }}></View>
+        {/* <View style={{ width: "31%", flexDirection: 'row', alignItems: "center", justifyContent: "flex-end" }}>
           {isThemeDark ? (
             <IconButton
               icon="white-balance-sunny"
@@ -69,9 +71,10 @@ export default function AuthAbbar({ title }) {
           >
           </TouchableOpacity>
 
-        </View>
+        </View> */}
       </View>
 
-    </Appbar.Header>
+      {/* </Appbar.Header> */}
+    </LinearGradient>
   );
 }

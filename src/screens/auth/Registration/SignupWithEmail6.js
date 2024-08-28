@@ -26,6 +26,7 @@ import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
 import { Checkbox } from 'react-native-paper';
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 
 const validationSchema = Yup.object().shape({
@@ -132,13 +133,14 @@ const SignupWithEmail4 = () => {
   const theme = useTheme();
 
   return (
-    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+    <ScreenGradientBackground>
+
       <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
 
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
 
         <Text style={styles.headerText}>CREATE PROFILE</Text>
         <Text style={styles.subHeaderText}>I Would Like To Avoid:.</Text>
@@ -240,7 +242,7 @@ const SignupWithEmail4 = () => {
               <TouchableOpacity
                 // onPress={() => navigation.navigate('BottomTabs')}
                 onPress={() => navigation.navigate({name:"HomeStack",params:{screen:'TermsAndConditions'}})}
-                style={{ alignItems: 'center', marginTop: 40 }}>
+                style={{ alignItems: 'center', marginTop: 2 }}>
                 <GradientButton
                   textStyle={{ color: '#fff', fontSize: 20, textAlign: 'center' }}
                   style={{
@@ -257,7 +259,7 @@ const SignupWithEmail4 = () => {
           )}
         </Formik>
       </ScrollView>
-    </View>
+    </ScreenGradientBackground>
   );
 };
 
@@ -268,19 +270,19 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 18,
-    marginVertical: '5%',
+    marginVertical: '2%',
     textAlign: 'center',
     fontWeight: '700',
   },
   subHeaderText: {
     fontSize: 18,
-    marginVertical: '2%',
+    marginVertical: '1%',
     textAlign: 'center',
     color: '#767676',
     marginTop: -2,
   },
   textInput: {
-    marginVertical: 15,
+    marginVertical: 5,
     backgroundColor: 'transparent',
     borderRadius: 20,
     color: "grey",

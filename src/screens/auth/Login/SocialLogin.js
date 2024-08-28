@@ -8,7 +8,7 @@ import GradientIconButton from '../../../components/GradientIconButton';
 
 const SocialLogin = () => {
     return (
-        <View style={{ alignItems: 'center', marginVertical: "20%" }}>
+        <View style={{ alignItems: 'center', marginVertical: "15%" }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%' }}>
                 <Divider style={{ flex: 1, height: 1, backgroundColor: '#888' }} />
                 <Text style={{fontFamily:"AnekBangla-Regular", marginHorizontal: 10, color: '#888' }}>or Log in with</Text>

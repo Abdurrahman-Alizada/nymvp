@@ -3,6 +3,7 @@ import { View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Card, Text, useTheme } from 'react-native-paper';
 import Carousel from 'react-native-reanimated-carousel';
 import { width } from '../../../GlobalStyles'; // Assuming this provides the screen width
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const HomeScreenIndex = ({ navigation }) => {
   const [isFast, setIsFast] = useState(false);
@@ -78,6 +79,8 @@ const HomeScreenIndex = ({ navigation }) => {
   };
 
   return (
+    <ScreenGradientBackground>
+
     <ScrollView
       style={{
         flex: 1,
@@ -178,6 +181,7 @@ const HomeScreenIndex = ({ navigation }) => {
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
+        elevation:5,
         backgroundColor: theme.colors.cardBackground, borderRadius: 10, padding: 10, margin: 20, height: CAROUSEL_HEIGHT, alignItems: "center", position: 'relative'
       }}>
 
@@ -301,6 +305,7 @@ const HomeScreenIndex = ({ navigation }) => {
         </Card>
       </View>
     </ScrollView>
+    </ScreenGradientBackground>
   );
 };
 

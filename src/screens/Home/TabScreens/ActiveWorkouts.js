@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { Button, Checkbox, Dialog, Portal } from 'react-native-paper';
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 import GradientButton from '../../../components/GradientButton';
+import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
 
 const exercises = [
     {
@@ -97,70 +98,73 @@ export default function WorkoutScreen() {
     };
 
     return (
-        <View style={styles.container}>
-            <WorkoutsScreensAppbar isMain={true} title={"ACTIVE WORKOUT"} />
-            <Text style={styles.timer}>{formatTime(totalTime)}</Text>
+        <ScreenGradientBackground>
 
-            <ScrollView contentContainerStyle={{ paddingBottom: "30%" }}>
-                {exercises.map((exercise, index) => (
-                    <View key={exercise.id} style={styles.exerciseContainer}>
-                        <View style={styles.exerciseRow}>
-                            <Text style={styles.exerciseName}>{exercise.name}</Text>
-                        </View>
-                        <Text style={styles.details}>{exercise.details}</Text>
+            <View style={styles.container}>
 
-                        {isWorkoutStarted && currentExerciseIndex === index && exercise.sets.map((set) => (
-                            <View key={set.id} style={styles.setRow}>
-                                <Text style={styles.subTask}>{set.name}</Text>
-                                <Checkbox
-                                color='#fff'
-                                    status={checkedSets[exercise.id]?.[set.id] ? 'checked' : 'unchecked'}
-                                />
+                <ScrollView contentContainerStyle={{ paddingBottom: "30%" }}>
+                    <WorkoutsScreensAppbar isMain={true} title={"ACTIVE WORKOUT"} />
+                    <Text style={styles.timer}>{formatTime(totalTime)}</Text>
+
+                    {exercises.map((exercise, index) => (
+                        <View key={exercise.id} style={styles.exerciseContainer}>
+                            <View style={styles.exerciseRow}>
+                                <Text style={styles.exerciseName}>{exercise.name}</Text>
                             </View>
-                        ))}
-                    </View>
-                ))}
-                {isWorkoutStarted && (
-                    <View style={styles.timerContainer}>
-                        <Text style={styles.timerText}>Next set in: {timer} seconds</Text>
-                    </View>
-                )}
-                <TouchableOpacity
-                    onPress={isWorkoutStarted ? () => setShowEndModal(true) : startWorkout}
-                >
-                    <GradientButton
-                        textStyle={{ color: "#fff", letterSpacing: 3 }}
-                        style={{
-                            padding: "5%", alignItems: "center", marginTop: 40, borderRadius: 20
-                        }}
-                        text={isWorkoutStarted ? 'End Workout' : 'Start Workout'}
-                    />
-                </TouchableOpacity>
+                            <Text style={styles.details}>{exercise.details}</Text>
 
-                <Portal>
-                    <Dialog
-                        style={{ backgroundColor: "#1C1C1C" }}
-                        visible={showEndModal} onDismiss={() => setShowEndModal(false)}>
-                        <Dialog.Title style={{ color: "#fff" }}>End Workout</Dialog.Title>
-                        <Dialog.Content>
-                            <Text style={{ color: "#fff" }}>Are you sure you want to end the workout?</Text>
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button labelStyle={{ color: "#fff" }} onPress={confirmEndWorkout}>Yes</Button>
-                            <Button labelStyle={{ color: "#fff" }} onPress={() => setShowEndModal(false)}>No</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
-            </ScrollView>
-        </View>
+                            {isWorkoutStarted && currentExerciseIndex === index && exercise.sets.map((set) => (
+                                <View key={set.id} style={styles.setRow}>
+                                    <Text style={styles.subTask}>{set.name}</Text>
+                                    <Checkbox
+                                        color='#fff'
+                                        status={checkedSets[exercise.id]?.[set.id] ? 'checked' : 'unchecked'}
+                                    />
+                                </View>
+                            ))}
+                        </View>
+                    ))}
+                    {isWorkoutStarted && (
+                        <View style={styles.timerContainer}>
+                            <Text style={styles.timerText}>Next set in: {timer} seconds</Text>
+                        </View>
+                    )}
+                    <TouchableOpacity
+                        onPress={isWorkoutStarted ? () => setShowEndModal(true) : startWorkout}
+                    >
+                        <GradientButton
+                            textStyle={{ color: "#fff", letterSpacing: 3 }}
+                            style={{
+                                padding: "5%", alignItems: "center", marginTop: 40, borderRadius: 20
+                            }}
+                            text={isWorkoutStarted ? 'End Workout' : 'Start Workout'}
+                        />
+                    </TouchableOpacity>
+
+                    <Portal>
+                        <Dialog
+                            style={{ backgroundColor: "#1C1C1C" }}
+                            visible={showEndModal} onDismiss={() => setShowEndModal(false)}>
+                            <Dialog.Title style={{ color: "#fff" }}>End Workout</Dialog.Title>
+                            <Dialog.Content>
+                                <Text style={{ color: "#fff" }}>Are you sure you want to end the workout?</Text>
+                            </Dialog.Content>
+                            <Dialog.Actions>
+                                <Button labelStyle={{ color: "#fff" }} onPress={confirmEndWorkout}>Yes</Button>
+                                <Button labelStyle={{ color: "#fff" }} onPress={() => setShowEndModal(false)}>No</Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
+                </ScrollView>
+            </View>
+        </ScreenGradientBackground>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        paddingVertical:40,
-        backgroundColor: '#121212',
+        paddingVertical: 40,
         flexGrow: 1,
     },
     exerciseContainer: {
@@ -172,13 +176,13 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-    
+        elevation: 5
     },
     exerciseRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-  
+
     },
     exerciseName: {
         fontSize: 18,
