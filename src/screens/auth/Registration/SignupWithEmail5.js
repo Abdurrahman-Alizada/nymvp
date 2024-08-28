@@ -26,6 +26,7 @@ import * as Yup from 'yup';
 import {useNavigation} from '@react-navigation/native';
 import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
+import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -136,7 +137,7 @@ const SignupWithEmail4 = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: theme.colors.background}}>
-      <AuthAppbar title="Sign up today. Work tomorrow" />
+      <WorkoutsScreensAppbar isMain={false} title={"CREATE PROFILE"} />
 
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}

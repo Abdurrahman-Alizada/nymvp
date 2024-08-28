@@ -13,10 +13,10 @@ const HistorScreen = () => {
     };
 
     return (
-        <View style={{ flex: 1, paddingVertical: "5%", backgroundColor: '#121212' }}>
+        <View style={{ flex: 1, paddingVertical: "8%", backgroundColor: '#121212' }}>
             <WorkoutsScreensAppbar isMain={true} title={"History"} />
 
-            <ScrollView contentContainerStyle={{paddingBottom:"10%",  backgroundColor: '#121212' }}>
+            <ScrollView contentContainerStyle={{ paddingBottom: "10%", paddingTop: "5%", backgroundColor: '#121212' }}>
                 <Card style={{ padding: 5, backgroundColor: '#1C1C1C', borderRadius: 10 }}>
                     <Calendar
                         theme={{
@@ -51,7 +51,13 @@ const HistorScreen = () => {
                     Sessions completed today
                 </Text>
 
-                <Card style={{ backgroundColor: '#1C1C1C', margin: 10, borderRadius: 15 }}>
+                <Card style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    backgroundColor: '#1C1C1C', margin: 10, borderRadius: 15
+                }}>
                     <Card.Content>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                             <Avatar.Icon size={40} icon="dumbbell" color="#FFF" style={{ backgroundColor: '#121212', marginRight: 10 }} />
@@ -85,7 +91,12 @@ const HistorScreen = () => {
                         </View>
                     </Card.Content>
                 </Card>
-                <Card style={{ backgroundColor: '#1C1C1C', margin: 10, borderRadius: 15 }}>
+                <Card style={{
+                      shadowColor: '#fff',
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 3.84,
+                   backgroundColor: '#1C1C1C', margin: 10, borderRadius: 15 }}>
                     <Card.Content>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                             <Avatar.Icon size={40} icon="dumbbell" color="#FFF" style={{ backgroundColor: '#121212', marginRight: 10 }} />

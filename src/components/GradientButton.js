@@ -7,7 +7,7 @@ const GradientButton = ({style,text, textStyle}) => {
 <LinearGradient colors={['#C5D7D7', '#839898']} 
     style={style} 
     start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}>
-        <Text style={textStyle}> {text} </Text>
+        <Text style={[textStyle,{fontFamily:"AnekBangla-Regular"}]}> {text} </Text>
  </LinearGradient>
   )
 }

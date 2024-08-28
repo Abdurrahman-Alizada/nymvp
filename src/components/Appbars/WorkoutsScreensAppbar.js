@@ -22,7 +22,7 @@ const WorkoutsScreensAppbar = ({ isMain, title }) => {
           />
         </TouchableOpacity>
       }
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View style={{ justifyContent: "center", alignItems: "center", marginLeft:!isMain ? -30:0 }}>
 
         <Image
           source={require('../../assets/logob.png')}
@@ -30,11 +30,11 @@ const WorkoutsScreensAppbar = ({ isMain, title }) => {
             height: 33,
             width: 162,
             resizeMode: 'contain',
-            // marginTop: 40,
+            marginTop: 20,
             // alignSelf: 'center',
           }}
         />
-        <Text style={{ color: "#fff", marginTop: 5 }}>{title}</Text>
+        <Text style={{ color: "#fff", marginTop: 7, fontSize:18 }}>{title}</Text>
       </View>
       <View></View>
     </View>

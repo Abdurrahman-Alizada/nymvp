@@ -2,12 +2,32 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/Modak-Regular.ttf",
-      "sha1": "46b8d9e4dedd90b6d81199c676a371996c662ee3"
-    },
-    {
       "path": "src/assets/fonts/AnekBangla.ttf",
       "sha1": "f44cfcf5eb46a3dd359c0647051bd5a165328b89"
+    },
+    {
+      "path": "src/assets/fonts/FuzzyBubbles-Bold.ttf",
+      "sha1": "57062efded86f67fc7c122f01f3eba08f65f6bb4"
+    },
+    {
+      "path": "src/assets/fonts/AnekBangla-Regular.ttf",
+      "sha1": "b9b3af7f71cf4dbed71641354af06167c5b3e618"
+    },
+    {
+      "path": "src/assets/fonts/Modak.ttf",
+      "sha1": "2d49ba79df373376728f6418a62f3ac598f13ab7"
+    },
+    {
+      "path": "src/assets/fonts/Franks.ttf",
+      "sha1": "4782dbeaf636458f0ed2feefa28b7c107efc7810"
+    },
+    {
+      "path": "src/assets/fonts/AnekBangla-Bold.ttf",
+      "sha1": "5a08d5cd808fcee3d4a669ac3d67128f5f61a3ac"
+    },
+    {
+      "path": "src/assets/fonts/AnekBangla Condensed Regular.ttf",
+      "sha1": "41315d49680dbfea83f0dc90d693667f2e94606a"
     }
   ]
 }

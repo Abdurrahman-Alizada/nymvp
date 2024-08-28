@@ -86,23 +86,23 @@ const Onboarding = () => {
           alignItems: 'center',
         }}
       >
-        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla' }}>
+        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla-Regular' }}>
           WELCOME TO
         </Text>
-        <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak-Regular' }}>
+        <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak' }}>
           PREFORMLY
         </Text>
-        <TouchableOpacity onPress={()=>navigation.navigate({name:"Auth", params:{screen:"Login"}})} style={{ width: "60%", padding: 12, alignItems: "center", marginTop: 10, backgroundColor: theme.colors.primary, borderRadius: 10 }}>
-          <Text style={{ color: "#fff" }}>LOGIN NOW</Text>
+        <TouchableOpacity onPress={() => navigation.navigate({ name: "Auth", params: { screen: "Login" } })} style={{ width: "60%", padding: 8, alignItems: "center", marginTop: 10, backgroundColor: theme.colors.primary, borderRadius: 10 }}>
+          <Text style={{ color: "#fff", fontFamily: "AnekBangla-Regular", letterSpacing: 2 }}>LOGIN NOW</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate({name:"Auth", params:{screen:"SignUpwithEmail"}})} style={{width: "60%",}}>
-        {/* <TouchableOpacity onPress={()=>navigation.navigate("BottomTabs")} style={{width: "60%",}}> */}
+        <TouchableOpacity onPress={() => navigation.navigate({ name: "Auth", params: { screen: "SignUpwithEmail" } })} style={{ width: "60%", }}>
 
-        <GradientButton
-          textStyle={{color:"#fff", letterSpacing:3}}
-          style={{
-             padding: 12, alignItems: "center", marginTop: 10, borderRadius: 10
-          }} text={"REGISTER NOW"} />
+          <GradientButton
+            textStyle={{ color: "#fff", letterSpacing: 2 }}
+            style={{
+              fontFamily: "AnekBangla-Regular",
+              padding: 8, alignItems: "center", marginTop: 10, borderRadius: 10
+            }} text={"REGISTER NOW"} />
         </TouchableOpacity>
       </View>
     </ImageBackground>

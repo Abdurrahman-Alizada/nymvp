@@ -32,8 +32,10 @@ export const darkPalette = {
 };
 
 export const fontConfig = {
-  fontFamily: 'Modak-Regular',
+  fontFamily:"Modak 400",
   fontFamily: 'AnekBangla',
+  fontFamily:"AnekBangla Condensed Regular",
+  fontFamily:"AnekBangla-Regular",
 };
 
 export default styles;

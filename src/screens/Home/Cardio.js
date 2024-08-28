@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ScrollView, View, Text, Image, TouchableOpacity } from 'react-native';
-import { Appbar, Button, Card } from 'react-native-paper';
+import { ScrollView, View, Image, TouchableOpacity } from 'react-native';
+import { Appbar, Text, Card } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import WorkoutsScreensAppbar from '../../components/Appbars/WorkoutsScreensAppbar';
 import GradientButton from '../../components/GradientButton';
@@ -14,7 +14,13 @@ const StartWorkoutsScreen = ({ }) => {
                 {/* Card 1 */}
                 <Text style={{ color: "#fff", marginBottom: 25, textAlign: "center" }}>Start Push Workout</Text>
                 <Text style={{ color: "#fff", marginBottom: 15, fontSize: 18, textAlign: "center" }}>Meditation</Text>
-                <Card style={{ marginBottom: 15, backgroundColor: '#1C1C1C', borderRadius: 10 }}>
+                <Card style={{ 
+                      shadowColor: '#fff',
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.25,
+                      shadowRadius: 3.84,
+                  
+                    marginBottom: 15, backgroundColor: '#1C1C1C', borderRadius: 10 }}>
                     <Card.Content>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             <View style={{ marginBottom: 3, flexDirection: "row", alignItems: "flex-start" }}>
@@ -75,7 +81,7 @@ const StartWorkoutsScreen = ({ }) => {
                         style={{
                             padding: "5%", alignItems: "center", marginTop: 40, borderRadius: 20
                         }}
-                        text={"Start Workouts adsf"}
+                        text={"Start Workouts"}
                     />
                 </TouchableOpacity>
             </ScrollView>
