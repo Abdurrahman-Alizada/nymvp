@@ -151,8 +151,9 @@ const SignupWithEmail2 = () => {
             marginVertical: '2%',
             textAlign: 'center',
             color: '#767676',
+            letterSpacing:3
           }}>
-          Register Information
+          Tell Us About You 
         </Text>
 
         <Formik
@@ -215,22 +216,22 @@ const SignupWithEmail2 = () => {
                   </Dialog.Actions>
                 </Dialog>
               </Portal>
-              <Text style={{ fontWeight: '800', marginBottom: '2%', top: 30 }}>Age:</Text>
+              <Text style={{ marginBottom: '2%', top: 30,fontSize:16,letterSpacing:3 }}>Age:</Text>
 
               <TextInput
                 placeholder=" Your age"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
+                letterSpacing={3}
                 mode="outlined"
                 theme={{ roundness: 20 }}
                 style={{ height: 60, marginTop: '9%' }}
-                outlineColor={theme.colors.secondary}
               />
               {errors.email && touched.email && (
                 <Text style={{ color: 'red' }}>{errors.email}</Text>
               )}
-              <Text style={{ fontWeight: '800', marginBottom: '2%', top: 22 }}>Height:</Text>
+              <Text style={{ fontSize:16,letterSpacing:3, marginBottom: '2%', top: 22 }}>Height:</Text>
 
               <TextInput
                 placeholder="Your height"
@@ -240,12 +241,11 @@ const SignupWithEmail2 = () => {
                 mode="outlined"
                 theme={{ roundness: 20 }}
                 style={{ height: 60, marginTop: '3%', marginTop: 20 }}
-                outlineColor={theme.colors.secondary}
               />
               {errors.email && touched.email && (
                 <Text style={{ color: 'red' }}>{errors.email}</Text>
               )}
-              <Text style={{ fontWeight: '800', marginBottom: '2%', top: 22 }}>Weight:</Text>
+              <Text style={{ fontSize:16,letterSpacing:3 , marginBottom: '2%', top: 22 }}>Weight:</Text>
 
               <TextInput
                 placeholder="Your weight"
@@ -255,7 +255,6 @@ const SignupWithEmail2 = () => {
                 mode="outlined"
                 theme={{ roundness: 20 }}
                 style={{ height: 60, marginTop: '3%', marginTop: 20 }}
-                outlineColor={theme.colors.secondary}
               />
               {errors.email && touched.email && (
                 <Text style={{ color: 'red' }}>{errors.email}</Text>
@@ -263,7 +262,7 @@ const SignupWithEmail2 = () => {
 
               {/* Gender Selection */}
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontSize: 16, color: '#767676' }}>Gender</Text>
+                <Text style={{ fontSize:16,letterSpacing:3 }}>Gender</Text>
                 <RadioButton.Group
                   onValueChange={newValue => setGender(newValue)}
                   value={gender}>
@@ -271,23 +270,32 @@ const SignupWithEmail2 = () => {
                     <RadioButton.Item
                       label="Male"
                       value="male"
-                      color={theme.colors.primary}
-                      uncheckedColor={theme.colors.surface}
-                      labelStyle={{ color: theme.colors.text }}
+                      mode="android"
+                      position="leading"
+                      color={theme.colors.onBackground}
+                      uncheckedColor={theme.colors.onBackground}
+                      style={{alignItems:"center",justifyContent:"center"}}
+                      labelStyle={{marginTop:5, fontSize:16}}
                     />
                     <RadioButton.Item
-                      label="Female"
+                      label="Feale"
                       value="female"
-                      color={theme.colors.primary}
-                      uncheckedColor={theme.colors.surface}
-                      labelStyle={{ color: theme.colors.text }}
+                      mode="android"
+                      position="leading"
+                      color={theme.colors.onBackground}
+                      uncheckedColor={theme.colors.onBackground}
+                      style={{alignItems:"center",justifyContent:"center"}}
+                      labelStyle={{marginTop:5, fontSize:16}}
                     />
-                    <RadioButton.Item
+                      <RadioButton.Item
                       label="Other"
                       value="other"
-                      color={theme.colors.primary}
-                      uncheckedColor={theme.colors.surface}
-                      labelStyle={{ color: theme.colors.text }}
+                      mode="android"
+                      position="leading"
+                      color={theme.colors.onBackground}
+                      uncheckedColor={theme.colors.onBackground}
+                      style={{alignItems:"center",justifyContent:"center"}}
+                      labelStyle={{marginTop:5, fontSize:16}}
                     />
                   </View>
                 </RadioButton.Group>
@@ -325,5 +333,6 @@ const styles = StyleSheet.create({
   radioButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    // alignItems:"center"
   },
 });

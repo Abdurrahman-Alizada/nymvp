@@ -22,6 +22,7 @@ import GradientButton from '../../../components/GradientButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
+import LinearGradient from 'react-native-linear-gradient';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -136,7 +137,6 @@ const SignupWithEmail4 = () => {
         showsVerticalScrollIndicator={false}>
         <StatusBar barStyle="light-content" />
 
-        <Text style={styles.headerText}>CREATE PROFILE</Text>
         <Text style={styles.subHeaderText}>Tell us about your goals.</Text>
 
         <Formik
@@ -202,25 +202,34 @@ const SignupWithEmail4 = () => {
 
 
               {workoutOptions.map((option, index) => (
-                <TouchableRipple
-                  key={index}
-                  onPress={() => setWorkoutFrequency(option.value)}
-                  style={[
-                    styles.optionContainer,
-                    workoutFrequency === option.value && styles.selectedOption,
-                  ]}
-                >
-                  <>
+                <View style={{
+                  marginVertical: 8,
+                  shadowColor: '#fff',
+                  shadowOffset: { width: 0, height: 1 },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3.84,
+                  elevation: 5
+                }}>
+                  <LinearGradient
+                    colors={['#1D1D1D', '#050505']}
+                    start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}
+                    key={index}
+                    style={
+                      styles.optionContainer
+                    }
+                  >
                     <Text style={styles.optionText}>{option.label}</Text>
-                    <RadioButton
+                    <RadioButton.Android
                       value={option.value}
+                      // label={option.label}
+                      labelStyle={{ letterSpacing: 3 }}
                       status={workoutFrequency === option.value ? 'checked' : 'unchecked'}
                       onPress={() => setWorkoutFrequency(option.value)}
                       color="lightgrey"
                       uncheckedColor="lightgrey"
                     />
-                  </>
-                </TouchableRipple>
+                  </LinearGradient>
+                </View>
               ))}
 
 
@@ -269,7 +278,9 @@ const styles = StyleSheet.create({
   },
   subHeaderText: {
     fontSize: 18,
-    marginVertical: '2%',
+    marginTop: 18,
+    marginBottom:56,
+    letterSpacing:3,
     textAlign: 'center',
     color: '#767676',
     marginTop: -2,
@@ -279,9 +290,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#222',
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 16,
-    marginVertical: 8,
+    marginTop: 8,
     shadowColor: '#fff',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,

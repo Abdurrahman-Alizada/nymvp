@@ -23,21 +23,10 @@ export default function AuthAbbar({ title }) {
       <View
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: "center"
         }}>
-        <View style={{ alignItems: 'center', width: '33%' }}>
-          {
-            title !== "Home" &&
-
-            <Appbar.BackAction
-              style={{ alignSelf: 'flex-start' }}
-              onPress={() => navigation.goBack()}
-            />
-          }
-
-        </View>
-        <View style={{ width: '33%' }}>
+       
           <Image
             style={{
               width: 150,
@@ -46,35 +35,9 @@ export default function AuthAbbar({ title }) {
             }}
             source={require('../../assets/logob.png')}
           />
-        </View>
-        <View style={{ width: "31%", }}></View>
-        {/* <View style={{ width: "31%", flexDirection: 'row', alignItems: "center", justifyContent: "flex-end" }}>
-          {isThemeDark ? (
-            <IconButton
-              icon="white-balance-sunny"
-              titleStyle={{ color: theme.colors.onBackground }}
-              onPress={() => toggleTheme()}
-            />
-          ) : (
-            <IconButton icon="weather-night" onPress={() => toggleTheme()} />
-          )}
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Main', {
-                screen: 'SettingsStack',
-                params: {
-                  screen: 'ChooseLanguage',
-                },
-              });
-            }}
-            style={{ marginHorizontal: '2%' }}
-          >
-          </TouchableOpacity>
-
-        </View> */}
+        
       </View>
 
-      {/* </Appbar.Header> */}
     </LinearGradient>
   );
 }

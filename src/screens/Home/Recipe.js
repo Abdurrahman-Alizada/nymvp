@@ -9,6 +9,15 @@ import ScreenGradientBackground from '../../components/ScreenGradientBackground'
 const Recipe = () => {
   const navigation = useNavigation(); // Hook for navigation
   const theme = useTheme()
+  const ingredients = [
+    '4 tablespoons (60ml) extra-virgin olive oil, divided',
+    '1 teaspoon coarsely ground black pepper, to taste',
+    'Kosher salt, to taste',
+    '1/2 pound (225g) spaghetti',
+    '2 tablespoons (30g) unsalted butter',
+    '2 ounces Pecorino Romano cheese'
+  ];
+
   return (
     <ScreenGradientBackground>
       <View style={{ flex: 1 }}>
@@ -23,6 +32,7 @@ const Recipe = () => {
               textAlign: 'center',
               marginTop: 20,
               fontWeight: '400',
+              letterSpacing: 3
             }}>
             Tuesday
           </Text>
@@ -40,7 +50,7 @@ const Recipe = () => {
           >
             <IconButton
               icon="chevron-left"
-              color="white"
+              iconColor="#838383"
               size={30}
               onPress={() => navigation.navigate('HomeScreenIndex')}
               style={{ marginHorizontal: 10 }}
@@ -57,7 +67,7 @@ const Recipe = () => {
 
             <IconButton
               icon="chevron-right" // Right arrow icon
-              color="white"
+              iconColor="#838383"
               size={30}
               onPress={() => {
               }}
@@ -102,51 +112,36 @@ const Recipe = () => {
             </TouchableOpacity>
 
           </View>
-          <Card style={{
-            shadowColor: '#fff',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
+          <View style={{padding:25}}>
+          <Text style={{ color: 'white', fontWeight: "500", fontSize: 30, letterSpacing:3 }}>Recipe:</Text>
 
-            padding: "5%", justifyContent: "flex-start", margin: 20
-          }}>
-            <Text style={{ color: 'white', fontWeight: "500", fontSize: 30 }}>Recipe:</Text>
-            <Text style={{ marginTop: "3%", color: 'white', fontWeight: "400", fontSize: 15 }}>
-              • 4 tablespoons (60ml) extra-virgin olive oil, divided
-            </Text>
-            <Text style={{ marginTop: "3%", color: 'white', fontWeight: "400", fontSize: 15 }}>
-              • 1 teaspoon coarsely ground black pepper, to taste
-            </Text>
-            <Text style={{ marginTop: "3%", color: 'white', fontWeight: "400", fontSize: 15 }}>
-              • Kosher salt, to taste
-            </Text>
-            <Text style={{ marginTop: "3%", color: 'white', fontWeight: "400", fontSize: 15 }}>
-              • 1/2 pound (225g) spaghetti
-            </Text>
-            <Text style={{ marginTop: "3%", color: 'white', fontWeight: "400", fontSize: 15 }}>
-              • 2 tablespoons (30g) unsalted butter
-            </Text>
+            {ingredients.map((item, index) => (
+              <View key={index} style={{flexDirection:"row"}}>
+              <Text  style={{fontSize:16,marginRight:5, letterSpacing:2}}>
+              {'\u2022'} 
+              </Text>
+              <Text key={index} style={{fontSize:16, letterSpacing:2}}>
+             {item}
+              </Text>
+              </View>
+            ))}
+          </View>
+         
+          <View style={{padding:25}}>
+          <Text style={{ color: 'white', fontWeight: "500", fontSize: 30, letterSpacing:3 }}>Nutrition:</Text>
 
-          </Card>
-
-          <Card style={{
-            shadowColor: '#fff',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            padding: "5%", justifyContent: "flex-start", margin: 20
-          }}>
-            <Text style={{ color: 'white', fontWeight: "500", fontSize: 30 }}>Nutrition:</Text>
-            {
-              ["Kolhydrater 31.29 g", "Kostfiber 19 g", "Socker 1.14 g", "Fett 6.81 g", "Mättat fett 2.71 g"].map((item, index) =>
-                <Text key={index} style={{ marginTop: "3%", color: 'white', fontWeight: "400", fontSize: 15 }}>
-                  • {item}
-                </Text>
-              )
-            }
-
-
-          </Card>
+            {["Kolhydrater 31.29 g", "Kostfiber 19 g", "Socker 1.14 g", "Fett 6.81 g", "Mättat fett 2.71 g"].map((item, index) => (
+              <View key={index} style={{flexDirection:"row"}}>
+              <Text  style={{fontSize:16,marginRight:5, letterSpacing:2}}>
+              {'\u2022'} 
+              </Text>
+              <Text key={index} style={{fontSize:16, letterSpacing:2}}>
+             {item}
+              </Text>
+              </View>
+            ))}
+          </View>
+       
 
         </ScrollView>
       </View>

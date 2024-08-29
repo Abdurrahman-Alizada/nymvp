@@ -511,7 +511,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = nymvp/nymvp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7TDPD8YU2G;
+				DEVELOPMENT_TEAM = 45A53G4Z5K;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = nymvp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -524,7 +524,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = PreformlyMVP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fullcharge.ios;
 				PRODUCT_NAME = nymvp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -540,7 +540,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = nymvp/nymvp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7TDPD8YU2G;
+				DEVELOPMENT_TEAM = 45A53G4Z5K;
 				INFOPLIST_FILE = nymvp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -552,7 +552,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = PreformlyMVP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fullcharge.ios;
 				PRODUCT_NAME = nymvp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

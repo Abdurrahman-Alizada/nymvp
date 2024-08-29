@@ -1,22 +1,29 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Facebook icon
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Google icon
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; // Apple icon
 import GradientIconButton from '../../../components/GradientIconButton';
+import { useNavigation } from '@react-navigation/native';
 
 const SocialLogin = () => {
+    const navigation = useNavigation();
     return (
-        <View style={{ alignItems: 'center', marginVertical: "15%" }}>
+        <View style={{ alignItems: 'center', marginVertical: 60 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%' }}>
                 <Divider style={{ flex: 1, height: 1, backgroundColor: '#888' }} />
-                <Text style={{fontFamily:"AnekBangla-Regular", marginHorizontal: 10, color: '#888' }}>or Log in with</Text>
+                <Text style={{ fontFamily: "AnekBangla-Regular", marginHorizontal: 10, color: '#888' }}>or Log in with</Text>
                 <Divider style={{ flex: 1, height: 1, backgroundColor: '#888' }} />
             </View>
 
-            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                <GradientIconButton style={{
+            <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                <View style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginHorizontal: 10,
@@ -28,13 +35,17 @@ const SocialLogin = () => {
                     backgroundColor: 'transparent',
 
                 }}>
-
                     <TouchableOpacity style={{}}>
-                        <Icon name="facebook" size={24} color="#ffffff" />
+                        <Image style={{ height: 30, width: 30 }} source={require("../../../assets/facebook.png")} />
                     </TouchableOpacity>
-                </GradientIconButton>
+                </View>
 
-                <GradientIconButton style={{
+                <View style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginHorizontal: 10,
@@ -46,13 +57,17 @@ const SocialLogin = () => {
                     backgroundColor: 'transparent',
 
                 }}>
-
                     <TouchableOpacity style={{}}>
-                        <MaterialCommunityIcons name="google" size={24} color="#ffffff" />
+                        <Image style={{ height: 30, width: 30 }} source={require("../../../assets/google.png")} />
                     </TouchableOpacity>
-                </GradientIconButton>
+                </View>
 
-                <GradientIconButton style={{
+                <View style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginHorizontal: 10,
@@ -64,13 +79,17 @@ const SocialLogin = () => {
                     backgroundColor: 'transparent',
 
                 }}>
-
                     <TouchableOpacity style={{}}>
-                        <FontAwesome name="apple" size={24} color="#ffffff" />
+                        <Image style={{ height: 30, width: 30 }} source={require("../../../assets/apple.png")} />
                     </TouchableOpacity>
-                </GradientIconButton>
-
+                </View>
             </View>
+            <TouchableOpacity
+                onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: 'TermsAndConditions' } })}
+            >
+
+                <Text style={{ color: "#fff", marginTop: 30, fontSize: 14, textTransform: "uppercase" }}>Terms and conditions</Text>
+            </TouchableOpacity>
         </View>
     );
 };

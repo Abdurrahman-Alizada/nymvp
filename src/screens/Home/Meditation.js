@@ -12,7 +12,7 @@ const Meditation = ({ }) => {
             <WorkoutsScreensAppbar isMain={false} title={"START WORKOUT"} />
             <ScrollView style={{ flex: 1, padding: 10, backgroundColor: '#121212' }}>
                 {/* Card 1 */}
-                <Text style={{ color: "#fff", marginBottom: 25, textAlign: "center" }}>Start Pull Workout</Text>
+                <Text style={{ color: "#fff", marginBottom: 25, letterSpacing:3 }}>Start Pull Workout</Text>
                 <Text style={{ color: "#fff", marginBottom: 15, fontSize: 18, textAlign: "center" }}>Cardio</Text>
                 <Card style={{
                       shadowColor: '#fff',
@@ -77,9 +77,9 @@ const Meditation = ({ }) => {
 
                 <TouchableOpacity onPress={() => navigation.navigate({ name: "HomeStack", params: { screen: "StartWorkouts" } })}>
                     <GradientButton
-                        textStyle={{ color: "#fff", letterSpacing: 3 }}
+                        textStyle={{ color: "#fff", letterSpacing: 3,fontSize:20 }}
                         style={{
-                            padding: "5%", alignItems: "center", marginTop: 40, borderRadius: 20
+                            height:55, alignItems: "center",justifyContent:"center", marginTop: 40, borderRadius: 20
                         }}
                         text={"Start Workouts"}
                     />

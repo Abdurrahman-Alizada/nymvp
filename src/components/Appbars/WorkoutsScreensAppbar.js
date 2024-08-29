@@ -33,7 +33,7 @@ const WorkoutsScreensAppbar = ({ isMain, title }) => {
             // alignSelf: 'center',
           }}
         />
-        <Text style={{ color: "#fff", marginTop: 7, fontSize:18 }}>{title}</Text>
+        <Text style={{ color: "#fff", marginTop: 7, fontSize:18,letterSpacing:3 }}>{title}</Text>
       </View>
       <View></View>
     </View>

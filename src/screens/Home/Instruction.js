@@ -31,72 +31,18 @@ export default function Instruction({ navigation }) {
             }}>
             CACIO E PEPE
           </Text>
-          <View style={{ padding: "5%" }}>
 
-            <Card style={{
-              shadowColor: '#fff',
-              shadowOffset: { width: 0, height: 4 },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              padding: "2%", justifyContent: "flex-start"
-            }}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 25,
-                  textAlign: 'left', // Aligns the text to the left
-                  fontWeight: '500',
-                  marginTop: 20,
-                  marginTop: 10,
-                  marginLeft: 10, // Keeps some padding from the left edge
-                }}>
-                Step One:
-              </Text>
-              <Text
-                style={{
-                  color: '#A7A7A7',
-                  fontSize: 15,
-                  textAlign: 'left', // Aligns the text to the left
-                  fontWeight: '400',
-                  marginLeft: 10, // Keeps some padding from the left edge
-                  marginTop: 10,
-                }}>
-                Heat 3 tablespoons olive oil and about a {'\n'}
-                teaspoon of black pepper in a medium{'\n'}
-                skillet over medium-low heat until {'\n'}
-                ingredients are fragrant and pepper is {'\n'}
-                barely starting to sizzle, about 1{'\n'}
-                minute. Set aside.
-              </Text>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 25,
-                  textAlign: 'left', // Aligns the text to the left
-                  fontWeight: '500',
-                  marginTop: 20,
-                  marginTop: 10,
-                  marginLeft: 10, // Keeps some padding from the left edge
-                }}>
-                Step Two:
-              </Text>
-              <Text
-                style={{
-                  color: '#A7A7A7',
-                  fontSize: 15,
-                  textAlign: 'left', // Aligns the text to the left
-                  fontWeight: '400',
-                  marginLeft: 10, // Keeps some padding from the left edge
-                  marginTop: 10
-                }}>
-                Heat 3 tablespoons olive oil and about a {'\n'}
-                teaspoon of black pepper in a medium{'\n'}
-                skillet over medium-low heat until {'\n'}
-                ingredients are fragrant and pepper is {'\n'}
-                barely starting to sizzle, about 1{'\n'}
-                minute. Set aside.
-              </Text>
-            </Card>
+
+          <View style={{ paddingHorizontal: 25,paddingTop:15 }}>
+            <Text style={{ color: 'white', fontWeight: "500", fontSize: 30, letterSpacing: 3 }}>Step one:</Text>
+            <Text  style={{ fontSize: 16, letterSpacing: 2 }}>
+              Heat 3 tablespoons olive oil and about a teaspoon of black pepper in a medium skillet over medium-low heat until ingredients are fragrant and pepper is barely starting to sizzle, about 1 minute. Set aside.              </Text>
+          </View>
+
+          <View style={{ paddingHorizontal: 25,paddingTop:15 }}>
+            <Text style={{ color: 'white', fontWeight: "500", fontSize: 30, letterSpacing: 3 }}>Step two:</Text>
+            <Text  style={{ fontSize: 16, letterSpacing: 2 }}>
+              Heat 3 tablespoons olive oil and about a teaspoon of black pepper in a medium skillet over medium-low heat until ingredients are fragrant and pepper is barely starting to sizzle, about 1 minute. Set aside.              </Text>
           </View>
         </ScrollView>
 

@@ -16,6 +16,7 @@ import {
   Checkbox,
   useTheme,
   TouchableRipple,
+  RadioButton,
 } from 'react-native-paper'; // Ensure Checkbox is imported
 import {
   useRegisterUserMutation,
@@ -28,6 +29,7 @@ import AuthAppbar from '../../../components/Appbars/AuthAbbar';
 import GradientButton from '../../../components/GradientButton';
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 import ScreenGradientBackground from '../../../components/ScreenGradientBackground';
+import LinearGradient from 'react-native-linear-gradient';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -135,6 +137,7 @@ const SignupWithEmail4 = () => {
 
   const formikRef = useRef();
   const theme = useTheme();
+  const [workoutFrequency, setWorkoutFrequency] = useState('first');
 
   return (
     <ScreenGradientBackground>
@@ -147,7 +150,6 @@ const SignupWithEmail4 = () => {
           showsVerticalScrollIndicator={false}>
           <StatusBar barStyle="light-content" />
 
-          <Text style={styles.headerText}>CREATE PROFILE</Text>
           <Text style={styles.subHeaderText}>Dietary Preferences.</Text>
 
           <Formik
@@ -212,36 +214,37 @@ const SignupWithEmail4 = () => {
                 </Portal>
 
                 {workoutOptions.map((option, index) => (
-
-                  <TouchableRipple
-                    onPress={() => {
-                      setSelectedWorkoutOptions(prev => ({
-                        ...prev,
-                        [option.value]: !prev[option.value], // Toggle checkbox
-                      }));
-                    }}
-
-                    key={index}
-                    style={styles.optionContainer}>
-
-
-                    <>
-
+                  <View style={{
+                    marginVertical: 8,
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 1 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5
+                  }}>
+                    <LinearGradient
+                      colors={['#1D1D1D', '#050505']}
+                      start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}
+                      key={index}
+                      style={
+                        styles.optionContainer
+                      }
+                    >
                       <Text style={styles.optionText}>{option.label}</Text>
-                      <Checkbox
-                        status={
-                          selectedWorkoutOptions[option.value]
-                            ? 'checked'
-                            : 'unchecked'
-                        }
-
+                      <RadioButton.Android
+                        value={option.value}
+                        // label={option.label}
+                        labelStyle={{ letterSpacing: 3 }}
+                        status={workoutFrequency === option.value ? 'checked' : 'unchecked'}
+                        onPress={() => setWorkoutFrequency(option.value)}
                         color="lightgrey"
                         uncheckedColor="lightgrey"
                       />
-                    </>
-                  </TouchableRipple>
+                    </LinearGradient>
+                  </View>
                 ))}
                 <Checkbox.Item
+                  mode="android"
                   label="I don’t want follow a diet."
                   color={'#839898'}
                   labelStyle={styles.label}
@@ -257,7 +260,7 @@ const SignupWithEmail4 = () => {
                   }}></TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('SignupWithEmail6')}
-                  style={{ alignItems: 'center', marginTop: 80 }}>
+                  style={{ alignItems: 'center', marginTop: 90 }}>
                   <GradientButton
                     textStyle={{ color: '#fff', fontSize: 20, textAlign: 'center' }}
                     style={{
@@ -302,16 +305,16 @@ const styles = StyleSheet.create({
     marginVertical: '2%',
     textAlign: 'center',
     color: '#767676',
-    marginTop: -2,
+    marginTop: 2,
   },
   optionContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#222',
-    borderRadius: 10,
+    // backgroundColor: '#222',
+    borderRadius: 20,
     padding: 16,
-    marginVertical: 8,
+    marginTop: 8,
     shadowColor: '#fff',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
@@ -326,7 +329,7 @@ const styles = StyleSheet.create({
   label: {
     // color: '#FFFFFF',
     fontSize: 17,
-    left: -40,
+    left: -65,
     top: 6,
   },
   checkboxItem: {
