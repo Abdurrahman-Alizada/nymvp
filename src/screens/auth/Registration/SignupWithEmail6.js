@@ -142,8 +142,7 @@ const SignupWithEmail4 = () => {
         showsVerticalScrollIndicator={false}>
         <StatusBar barStyle="light-content" />
 
-        <Text style={styles.headerText}>CREATE PROFILE</Text>
-        <Text style={styles.subHeaderText}>I Would Like To Avoid:.</Text>
+        <Text style={styles.subHeaderText}>I Would Like To Avoid:</Text>
 
         <Formik
           innerRef={formikRef}
@@ -205,7 +204,7 @@ const SignupWithEmail4 = () => {
                   </Dialog.Actions>
                 </Dialog>
               </Portal>
-              <Text style={{ top: 25 }}>Ingredients:</Text>
+              <Text style={{ top: 25,letterSpacing:3 }}>Ingredients:</Text>
               <TextInput
                 placeholder="Fish, Beans, ........."
                 onChangeText={handleChange('firstOption')}
@@ -216,7 +215,7 @@ const SignupWithEmail4 = () => {
                 outlineColor={theme.colors.secondary}
               />
 
-              <Text style={{ top: 25 }}>Meals/courses:</Text>
+              <Text style={{ top: 25,letterSpacing:3 }}>Meals/courses:</Text>
 
 
               <TextInput
@@ -236,12 +235,13 @@ const SignupWithEmail4 = () => {
               <Checkbox.Item label="I don’t have anything to avoid"
                 color={"#839898"}
                 labelStyle={styles.label}
+                mode="android"
                 style={styles.checkboxItem}
                 position="leading"
                 status="checked" />
               <TouchableOpacity
-                // onPress={() => navigation.navigate('BottomTabs')}
-                onPress={() => navigation.navigate({name:"HomeStack",params:{screen:'TermsAndConditions'}})}
+                onPress={() => navigation.navigate('BottomTabs')}
+                // onPress={() => navigation.navigate({name:"HomeStack",params:{screen:'TermsAndConditions'}})}
                 style={{ alignItems: 'center', marginTop: 2 }}>
                 <GradientButton
                   textStyle={{ color: '#fff', fontSize: 20, textAlign: 'center' }}
@@ -250,7 +250,8 @@ const SignupWithEmail4 = () => {
                     width: '65%',
                     height: 55,
                     justifyContent: 'center',
-                    top: 50, // Centers the text vertically
+                    marginTop:70
+                    // top: 50, // Centers the text vertically
                   }}
                   text={'Next'}
                 />
@@ -276,10 +277,9 @@ const styles = StyleSheet.create({
   },
   subHeaderText: {
     fontSize: 18,
-    marginVertical: '1%',
+    marginTop: 10,
     textAlign: 'center',
     color: '#767676',
-    marginTop: -2,
   },
   textInput: {
     marginVertical: 5,

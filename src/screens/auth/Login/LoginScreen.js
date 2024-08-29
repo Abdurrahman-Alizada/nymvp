@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Image,
   ScrollView,
   TouchableOpacity,
   View,
@@ -105,7 +106,7 @@ const LoginScreen = ({ navigation }) => {
           flex: 1,
         }}>
         <AuthAppbar title={'Sign in'} />
-        <Text style={{ textAlign: "center", fontSize: 18 }}>Sign in</Text>
+        <Text style={{ textAlign: "center", fontSize: 18, letterSpacing: 3 }}>Log In</Text>
 
         <Portal>
           <Dialog visible={visible} onDismiss={() => setVisible(false)}>
@@ -152,14 +153,13 @@ const LoginScreen = ({ navigation }) => {
               style={{
                 flex: 1,
                 justifyContent: 'space-between',
-                marginTop: '5%',
+                marginTop: 73,
                 paddingHorizontal: '5%',
               }}>
               <View>
                 <TextInput
                   placeholder={'Email address'}
                   mode="outlined"
-                  style={{ marginTop: '1%' }}
                   value={values.email}
                   theme={{ roundness: 20 }}
                   onChangeText={handleChange('email')}
@@ -167,7 +167,12 @@ const LoginScreen = ({ navigation }) => {
                   activeOutlineColor={theme.colors.secondary}
                   left={
                     <TextInput.Icon
-                      icon={'email-outline'}
+                      icon={({ size, color }) => (
+                        <Image
+                          source={require('../../../assets/email.png')}
+                          style={{ width: size, height: size, }}
+                        />
+                      )}
                       onPress={() => setShowPassword(!showPassword)}
                     />
                   } />
@@ -182,15 +187,12 @@ const LoginScreen = ({ navigation }) => {
                   secureTextEntry={!showPassword}
                   left={
                     <TextInput.Icon
-                      icon={'lock-outline'}
-                      onPress={() => setShowPassword(!showPassword)}
-                    />
-                  }
-                  right={
-                    <TextInput.Icon
-                      icon={showPassword ? 'eye' : 'eye-off'}
-                      onPress={() => setShowPassword(!showPassword)}
-                    />
+                      icon={({ size, color }) => (
+                        <Image
+                          source={require('../../../assets/lock.png')}
+                          style={{ width: size, height: size, }}
+                        />
+                      )} />
                   }
                   mode="outlined"
                   style={{ marginTop: '3%' }}
@@ -214,12 +216,12 @@ const LoginScreen = ({ navigation }) => {
                   </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.replace("BottomTabs")}>
+                <TouchableOpacity style={{marginTop:60}} onPress={() => navigation.replace("BottomTabs")}>
                   <GradientButton
-                    textStyle={{ color: "#fff", letterSpacing: 3 }}
+                    textStyle={{ color: "#fff", letterSpacing: 3,fontSize:20 }}
                     style={{
-                      fontFamily: "AnekBangla-Regular",
-                      padding: "7%", alignItems: "center", marginTop: 30, borderRadius: 20
+                      fontFamily: "AnekBangla-Regular",justifyContent:"center",
+                      height:55,alignItems: "center", marginTop: 30, borderRadius: 20
                     }}
                     text={"LOGIN"}
                   />

@@ -27,14 +27,14 @@ const Onboarding = () => {
           alignItems: 'center',
         }}
       >
-        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla' }}>
+        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla-Regular',letterSpacing:3 }}>
           WELCOME TO
         </Text>
         <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak' }}>
           PREFORMLY
         </Text>
-        <TouchableOpacity onPress={()=>navigation.navigate("WelcomeScreen")} style={{width:"60%", padding: 12, alignItems:"center",marginTop:10, backgroundColor:theme.colors.primary, borderRadius:10}}>
-          <Text style={{ color: "#fff" }}>Continue to app</Text>
+        <TouchableOpacity onPress={()=>navigation.navigate("WelcomeScreen")} style={{width:"60%", height:44,justifyContent:"center", alignItems:"center",marginTop:10, backgroundColor:theme.colors.primary, borderRadius:10}}>
+          <Text style={{ color: "#fff",fontSize:17, letterSpacing:2 }}>Continue to app</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

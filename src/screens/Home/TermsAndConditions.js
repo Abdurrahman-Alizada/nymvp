@@ -58,12 +58,13 @@ const Termscondition = () => {
           <TouchableOpacity
             style={{
               backgroundColor: '#C5D7D7',
-              paddingVertical: 15,
-              borderRadius: 15,
+              // paddingVertical: 15,
+              borderRadius: 10,
               width: '70%',
               // height:30,
               alignItems: 'center',
-              height: 60,
+              height: 45,
+              justifyContent:"center",
               alignSelf: 'center',
               marginTop: 100,
               marginBottom: 100, // Space from bottom of the screen
@@ -72,7 +73,7 @@ const Termscondition = () => {
               navigation.navigate('BottomTabs'); // Ensure this route exists in your navigator
             }}>
             <Text style={{ color: 'white', fontSize: 18, alignSelf: "center" }}>
-              Go to App
+            Report a problem
             </Text>
           </TouchableOpacity>
         </View>

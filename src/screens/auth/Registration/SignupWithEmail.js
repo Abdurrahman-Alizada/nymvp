@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, StatusBar, View, ScrollView } from 'react-native';
+import { StyleSheet, StatusBar, View, ScrollView, Image } from 'react-native';
 
 import {
   TextInput,
@@ -135,7 +135,7 @@ const SignupWithEmail = () => {
   return (
     <ScreenGradientBackground>
 
-      <View style={{ flex: 1,  }}>
+      <View style={{ flex: 1, }}>
         <StatusBar barStyle="light-content" />
         <WorkoutsScreensAppbar isMain={true} title={"CREATE PROFILE"} />
         <ScrollView
@@ -166,7 +166,7 @@ const SignupWithEmail = () => {
               errors,
               touched,
             }) => (
-              <View>
+              <View style={{justifyContent:"center"}}>
                 <Portal>
                   <Dialog visible={visible} onDismiss={() => setVisible(false)}>
                     <Dialog.Title>Sign up</Dialog.Title>
@@ -203,7 +203,7 @@ const SignupWithEmail = () => {
                   </Dialog>
                 </Portal>
 
-                <Text style={{ color: "#767676", fontSize: 18, marginVertical: '2%', textAlign: "center", }}>
+                <Text style={{ letterSpacing: 3, color: "#767676", fontSize: 18, marginVertical: '2%', textAlign: "center", }}>
                   Register Information
                 </Text>
                 <TextInput
@@ -214,7 +214,6 @@ const SignupWithEmail = () => {
                   mode="outlined"
                   theme={{ roundness: 20 }}
                   style={{ height: 60, marginTop: '9%' }}
-                  outlineColor={theme.colors.secondary}
                 />
                 {errors.email && touched.email && (
                   <Text style={{ color: 'red' }}>{errors.email}</Text>
@@ -228,7 +227,6 @@ const SignupWithEmail = () => {
                   mode="outlined"
                   theme={{ roundness: 20 }}
                   style={{ height: 60, marginTop: '3%', marginTop: 20 }}
-                  outlineColor={theme.colors.secondary}
                 />
                 {errors.email && touched.email && (
                   <Text style={{ color: 'red' }}>{errors.email}</Text>
@@ -243,11 +241,15 @@ const SignupWithEmail = () => {
                   secureTextEntry={!passwordVisible}
                   theme={{ roundness: 20 }}
                   style={{ height: 60, marginTop: 20 }}
-                  outlineColor={theme.colors.secondary}
                   right={
                     <PaperTextInput.Icon
-                      icon={passwordVisible ? 'eye-off' : 'eye'}
-                      onPress={() => setPasswordVisible(!passwordVisible)}
+                      icon={({ size, color }) => (
+                        <Image
+                          source={require('../../../assets/eye.png')}
+                          style={{ width: size, height: size, }}
+                        />
+                      )}
+                      onPress={() => setShowPassword(!showPassword)}
                     />
                   }
                 />
@@ -267,8 +269,13 @@ const SignupWithEmail = () => {
                   outlineColor={theme.colors.secondary}
                   right={
                     <PaperTextInput.Icon
-                      icon={passwordVisible ? 'eye-off' : 'eye'}
-                      onPress={() => setPasswordVisible(!passwordVisible)}
+                      icon={({ size, color }) => (
+                        <Image
+                          source={require('../../../assets/eye.png')}
+                          style={{ width: size, height: size, }}
+                        />
+                      )}
+                      onPress={() => setShowPassword(!showPassword)}
                     />
                   }
                 />
@@ -284,93 +291,79 @@ const SignupWithEmail = () => {
                   mode="outlined"
                   theme={{ roundness: 20 }}
                   style={{ height: 60, marginTop: '3%', marginTop: 20 }}
-                  outlineColor={theme.colors.secondary}
                 />
                 {errors.email && touched.email && (
                   <Text style={{ color: 'red' }}>{errors.email}</Text>
                 )}
 
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginTop: '2%',
-                  }}></View>
+                <View style={{width:"100%",marginVertical:35, justifyContent:"center", flexDirection: 'row',  alignItems: "center" }}>
+                  <View style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#555',
+                    width: 60,
+                    height: 60,
+                    borderRadius: 10,
+                    backgroundColor: 'transparent',
 
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    marginVertical: "5%"
                   }}>
-                  <GradientIconButton
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginHorizontal: 40,
-                      left: 20,
-                      borderWidth: 1,
-                      borderColor: '#555',
-                      width: 50,
-                      height: 50,
-                      borderRadius: 10,
-                      backgroundColor: 'transparent',
-                    }}>
                     <TouchableOpacity style={{}}>
-                      <MaterialCommunityIcons
-                        name="facebook"
-                        size={24}
-                        color="#ffffff"
-                      />
+                      <Image style={{ height: 30, width: 30 }} source={require("../../../assets/facebook.png")} />
                     </TouchableOpacity>
-                  </GradientIconButton>
+                  </View>
 
+                  <View style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#555',
+                    width: 60,
+                    height: 60,
+                    borderRadius: 10,
+                    backgroundColor: 'transparent',
 
-
-                  <GradientIconButton
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginHorizontal: 10,
-                      borderWidth: 1,
-                      borderColor: '#555',
-                      width: 50,
-                      height: 50,
-                      left: 2,
-
-                      borderRadius: 10,
-                      backgroundColor: 'transparent',
-                    }}>
+                  }}>
                     <TouchableOpacity style={{}}>
-                      <MaterialCommunityIcons
-                        name="google"
-                        size={24}
-                        color="#ffffff"
-                      />
+                      <Image style={{ height: 30, width: 30 }} source={require("../../../assets/google.png")} />
                     </TouchableOpacity>
-                  </GradientIconButton>
-                  <GradientIconButton
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginHorizontal: 10,
-                      borderWidth: 1,
-                      borderColor: '#555',
-                      left: 10,
+                  </View>
 
-                      width: 50,
-                      height: 50,
-                      borderRadius: 10,
-                      backgroundColor: 'transparent',
-                    }}>
+                  <View style={{
+                    shadowColor: '#fff',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+                    elevation: 5,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginHorizontal: 10,
+                    borderWidth: 1,
+                    borderColor: '#555',
+                    width: 60,
+                    height: 60,
+                    borderRadius: 10,
+                    backgroundColor: 'transparent',
+
+                  }}>
                     <TouchableOpacity style={{}}>
-                      <MaterialCommunityIcons
-                        name="apple"
-                        size={24}
-                        color="#ffffff"
-                      />
+                      <Image style={{ height: 30, width: 30 }} source={require("../../../assets/apple.png")} />
                     </TouchableOpacity>
-                  </GradientIconButton>
+                  </View>
                 </View>
+               
                 <TouchableOpacity
                   onPress={() => navigation.navigate('SignUpwithEmail2')}>
 
@@ -381,9 +374,9 @@ const SignupWithEmail = () => {
                       alignItems: 'center',
                       // marginTop: 90,
                       borderRadius: 20,
-                      marginTop: 10,
+                      // marginTop: 10,
                       width: '60%',
-                      // height: '25%',
+                      height: 55,
                       left: 65,
                     }}
                     text={'Next'}

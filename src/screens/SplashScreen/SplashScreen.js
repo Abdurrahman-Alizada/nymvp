@@ -108,12 +108,12 @@ const SplashScreen = ({ navigation }) => {
       <View
         style={{
           flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          // backgroundColor: 'rgba(0, 0, 0, 0.5)',
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla-Regular' }}>
+        <Text style={{ fontSize: 18, color: '#fff', fontFamily: 'AnekBangla-Regular', letterSpacing:2 }}>
           WELCOME TO
         </Text>
         <Text style={{ fontSize: 30, color: '#fff', fontFamily: 'Modak' }}>
@@ -125,7 +125,7 @@ const SplashScreen = ({ navigation }) => {
             width: 50,
             height: 50,
             borderRadius: 25,
-            marginTop: 20,
+            marginTop: 66,
             transform: [{ rotate: rotateInterpolate }],
           }}
         />

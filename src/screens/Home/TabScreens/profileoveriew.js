@@ -1,5 +1,5 @@
 import { View, StatusBar, Image, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import WorkoutsScreensAppbar from '../../../components/Appbars/WorkoutsScreensAppbar';
 import { useTheme, Text, Card } from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,6 +9,7 @@ import ScreenGradientBackground from '../../../components/ScreenGradientBackgrou
 
 const Profile = () => {
   const theme = useTheme();
+  const [activeIndex, setActiveIndex] = useState(0); // state to track the active index
   
   const plans = [
     {
@@ -65,9 +66,9 @@ const Profile = () => {
   return (
     <ScreenGradientBackground>
       <ScrollView contentContainerStyle={{ marginBottom:"5%"}}>
-      <WorkoutsScreensAppbar isMain={true} title={"PROFILE OVERVIEW"} />
+        <WorkoutsScreensAppbar isMain={true} title={"PROFILE OVERVIEW"} />
 
-        <Text style={{ marginTop: "5%", textAlign: "center", fontSize: 18 }}>Choose your plan</Text>
+        <Text style={{ marginTop: "2%", textAlign: "center", fontSize: 18,letterSpacing:3 }}>Choose your plan</Text>
         <Image
           style={{
             width: 100,
@@ -75,14 +76,14 @@ const Profile = () => {
             marginRight: 5,
             resizeMode: "contain",
             alignSelf: "center",
-            marginTop: 14,
+            marginTop: 10,
             borderRadius: 50,
           }}
           source={require('../../../assets/avatar.png')}
         />
         <Text style={{
           textAlign: "center",
-          marginTop: 10,
+          marginTop: 5,
           fontSize: 16,
           color: "#D0D0D0",
           fontFamily: "FuzzyBubble-Regular"
@@ -92,10 +93,11 @@ const Profile = () => {
           width={width}
           height={500}
           data={plans}
-          style={{marginBottom:"15%"}}
+          // style={{ marginBottom: "5%" }}
           scrollAnimationDuration={1000}
+          onSnapToItem={(index) => setActiveIndex(index)} // track active index
           renderItem={({ item }) => (
-            <View style={{marginBottom:"5%"}}>
+            <View style={{ marginBottom: "5%" }}>
               <Image
                 source={require('../../../assets/diamods.png')}
                 style={{
@@ -117,11 +119,9 @@ const Profile = () => {
                 shadowOpacity: 0.25,
                 shadowRadius: 3.84,
               }}>
-
                 <LinearGradient colors={['#C5D7D7', '#839898']}
                   style={{ borderTopRightRadius: 20, borderTopLeftRadius: 20, }}
                   start={{ y: 0.0, x: 0.0 }} end={{ y: 0.0, x: 1.0 }}>
-
                   <View style={{
                     alignItems: 'center',
                     borderRadius: 10,
@@ -133,16 +133,32 @@ const Profile = () => {
                   </View>
                 </LinearGradient>
 
-                <Text style={{ padding: "5%",marginTop:5, color: "#FFFFFF", fontSize: 14, lineHeight: 23 }}>
+                <Text style={{ padding: "5%", marginTop: 5, color: "#FFFFFF", fontSize: 14, lineHeight: 23 }}>
                   {item.features.map((feature, index) => (
                     <Text key={index}>• {feature}{"\n"}</Text>
                   ))}
                 </Text>
               </Card>
+              
             </View>
           )}
         />
-  
+
+        {/* Pagination Dots */}
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: "25%" }}>
+          {plans.map((_, index) => (
+            <View
+              key={index}
+              style={{
+                height: 8,
+                width: 8,
+                backgroundColor: index === activeIndex ? '#fff' : '#ccc',
+                borderRadius: 4,
+                marginHorizontal: 4,
+              }}
+            />
+          ))}
+        </View>
       </ScrollView>
     </ScreenGradientBackground>
   );
